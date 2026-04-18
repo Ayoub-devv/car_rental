@@ -7,6 +7,20 @@
             "config": {
                 "distDir": "public"
             }
+        },
+        {
+            "src": "api/index.php",
+            "use": "vercel-php@0.7.5"
+        }
+    ],
+    "routes": [
+        {
+            "src": "/(build|images|logo|favicon.ico|robots.txt)(.*)",
+            "dest": "/$1$2"
+        },
+        {
+            "src": "/(.*)",
+            "dest": "/api/index.php"
         }
     ]
 }
