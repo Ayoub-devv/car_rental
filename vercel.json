@@ -1,7 +1,12 @@
 {
     "version": 2,
-    "framework": "laravel",
-    "outputDirectory": "public",
-    "buildCommand": "npm run build",
-    "installCommand": "npm install"
+    "builds": [
+        {
+            "src": "package.json",
+            "use": "@vercel/static-build",
+            "config": {
+                "distDir": "public"
+            }
+        }
+    ]
 }
