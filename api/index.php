@@ -9,6 +9,7 @@ putenv('APP_DEBUG=true');
 
 // Handle Vercel's Read-Only Filesystem
 $_ENV['APP_STORAGE'] = '/tmp/storage';
+$_ENV['APP_BOOTSTRAP_CACHE_PATH'] = '/tmp/storage/bootstrap/cache';
 $_ENV['LOG_CHANNEL'] = 'stderr';
 $_ENV['CACHE_STORE'] = 'array';
 $_ENV['SESSION_DRIVER'] = 'cookie';
@@ -16,8 +17,17 @@ $_ENV['VIEW_COMPILED_PATH'] = '/tmp/storage/framework/views';
 $_ENV['DATA_CACHE_PATH'] = '/tmp/storage/framework/cache';
 
 // Ensure the necessary directories exist in /tmp
-if (!is_dir('/tmp/storage/framework/views')) {
-    mkdir('/tmp/storage/framework/views', 0755, true);
+$dirs = [
+    '/tmp/storage/bootstrap/cache',
+    '/tmp/storage/framework/views',
+    '/tmp/storage/framework/cache',
+    '/tmp/storage/framework/sessions',
+];
+
+foreach ($dirs as $dir) {
+    if (!is_dir($dir)) {
+        mkdir($dir, 0755, true);
+    }
 }
 
 // Forward requests to the standard Laravel index file
