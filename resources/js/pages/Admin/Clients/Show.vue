@@ -119,43 +119,43 @@ const statusStyle = computed(() => {
 
       <!-- Stats -->
       <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
-        <div class="rounded-md border p-4">
+        <div class="rounded-md border border-border p-4 bg-background shadow-sm">
           <div class="text-sm text-muted-foreground">Total Spent</div>
           <div class="text-xl font-semibold">{{ fmtMoney(stats.total_spent) }}</div>
         </div>
-        <div class="rounded-md border p-4">
+        <div class="rounded-md border border-border p-4 bg-background shadow-sm">
           <div class="text-sm text-muted-foreground">Reservations</div>
           <div class="text-xl font-semibold">{{ stats.total_reservations }}</div>
         </div>
-        <div class="rounded-md border p-4">
+        <div class="rounded-md border border-border p-4 bg-background shadow-sm">
           <div class="text-sm text-muted-foreground">Payments</div>
           <div class="text-xl font-semibold">{{ stats.total_payments }}</div>
         </div>
       </div>
 
       <!-- Reservations -->
-      <div class="rounded-md border">
-        <div class="border-b px-4 py-3 font-medium">Past Reservations</div>
+      <div class="rounded-md border border-border bg-background shadow-sm">
+        <div class="border-b border-border px-4 py-3 font-medium text-foreground">Past Reservations</div>
         <div class="overflow-x-auto">
-          <table class="min-w-full divide-y divide-gray-200">
-            <thead class="bg-gray-50">
+        <table class="min-w-full divide-y divide-border">
+          <thead class="bg-muted/50">
               <tr>
-                <th class="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-zinc-200">#</th>
-                <th class="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-zinc-200">Car</th>
-                <th class="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-zinc-200">Dates</th>
-                <th class="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-zinc-200">Total</th>
-                <th class="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-zinc-200">Status</th>
+                <th class="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-muted-foreground">#</th>
+                <th class="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-muted-foreground">Car</th>
+                <th class="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-muted-foreground">Dates</th>
+                <th class="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-muted-foreground">Total</th>
+                <th class="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-muted-foreground">Status</th>
                 <th class="px-4 py-3"></th>
               </tr>
             </thead>
-            <tbody class="divide-y divide-gray-200 bg-white text-black">
+            <tbody class="divide-y divide-border bg-background text-foreground">
               <tr v-for="r in reservations.data" :key="r.id">
                 <td class="px-4 py-3">{{ r.reservation_number }}</td>
                 <td class="px-4 py-3">
                   <div class="font-medium">
                     {{ r.car ? `${r.car.year} ${r.car.make} ${r.car.model}` : '—' }}
                   </div>
-                  <div class="text-xs text-zinc-500">{{ r.car?.license_plate }}</div>
+                  <div class="text-xs text-muted-foreground">{{ r.car?.license_plate }}</div>
                 </td>
                 <td class="px-4 py-3">
                   <div class="font-medium">
@@ -182,8 +182,8 @@ const statusStyle = computed(() => {
             :key="i"
             :href="link.url || ''"
             :class="[
-              'rounded px-3 py-1 text-sm',
-              link.active ? 'bg-black text-white' : 'bg-zinc-950 border border-white/10 text-zinc-200',
+              'rounded px-3 py-1 text-sm transition-all',
+              link.active ? 'bg-primary text-primary-foreground font-bold' : 'bg-muted border border-border text-muted-foreground hover:bg-muted/80',
               !link.url && 'pointer-events-none opacity-50',
             ]"
           >
@@ -193,21 +193,21 @@ const statusStyle = computed(() => {
       </div>
 
       <!-- Payments -->
-      <div class="rounded-md border">
-        <div class="border-b px-4 py-3 font-medium">Payments</div>
+      <div class="rounded-md border border-border bg-background shadow-sm">
+        <div class="border-b border-border px-4 py-3 font-medium text-foreground">Payments</div>
         <div class="overflow-x-auto">
-          <table class="min-w-full divide-y divide-gray-200">
-            <thead class="bg-gray-50">
+        <table class="min-w-full divide-y divide-border">
+          <thead class="bg-muted/50">
               <tr>
-                <th class="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-zinc-200">#</th>
-                <th class="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-zinc-200">Reservation</th>
-                <th class="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-zinc-200">Amount</th>
-                <th class="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-zinc-200">Method</th>
-                <th class="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-zinc-200">Status</th>
-                <th class="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-zinc-200">Processed</th>
+                <th class="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-muted-foreground">#</th>
+                <th class="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-muted-foreground">Reservation</th>
+                <th class="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-muted-foreground">Amount</th>
+                <th class="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-muted-foreground">Method</th>
+                <th class="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-muted-foreground">Status</th>
+                <th class="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-muted-foreground">Processed</th>
               </tr>
             </thead>
-            <tbody class="divide-y divide-gray-200 bg-white text-black">
+            <tbody class="divide-y divide-border bg-background text-foreground">
               <tr v-for="p in payments.data" :key="p.id">
                 <td class="px-4 py-3">{{ p.payment_number }}</td>
                 <td class="px-4 py-3">
@@ -230,8 +230,8 @@ const statusStyle = computed(() => {
             :key="i"
             :href="link.url || ''"
             :class="[
-              'rounded px-3 py-1 text-sm',
-              link.active ? 'bg-black text-white' : 'bg-zinc-950 border border-white/10 text-zinc-200',
+              'rounded px-3 py-1 text-sm transition-all',
+              link.active ? 'bg-primary text-primary-foreground font-bold' : 'bg-muted border border-border text-muted-foreground hover:bg-muted/80',
               !link.url && 'pointer-events-none opacity-50',
             ]"
           >

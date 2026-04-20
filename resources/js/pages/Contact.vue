@@ -38,7 +38,7 @@ const sendTicket = () => {
 </script>
 <template>
     <HomeLayout>
-        <div class="min-h-screen bg-zinc-950 border border-white/10/60 backdrop-blur-xl py-16 ">
+        <div class="min-h-screen bg-background border border-border backdrop-blur-xl py-16 ">
             <!-- notification -->
             <div>
                 <p class="fixed top-24 right-4 bg-slate-700 text-white p-3 rounded-xl" v-if="showNotification">{{ notificationMessage }}</p>
@@ -46,10 +46,10 @@ const sendTicket = () => {
             <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <!-- Header Section -->
                 <div class="mb-16 text-center">
-                    <h1 class="mb-4 text-4xl font-bold text-white">
+                    <h1 class="mb-4 text-4xl font-bold text-foreground">
                         Contact Us
                     </h1>
-                    <p class="mx-auto max-w-2xl text-xl text-zinc-200">
+                    <p class="mx-auto max-w-2xl text-xl text-muted-foreground">
                         Have questions about our car rental services? We're here
                         to help. Send us a message and we'll get back to you as
                         soon as possible.
@@ -60,9 +60,9 @@ const sendTicket = () => {
                     <!-- Contact Form -->
                     <div class="lg:col-span-2">
                         <div
-                            class="rounded-lg border border-white/10 bg-zinc-950 border border-white/10/60 backdrop-blur-xl p-8 shadow-sm"
+                            class="rounded-lg border border-border bg-background backdrop-blur-xl p-8 shadow-sm"
                         >
-                            <h2 class="mb-6 text-2xl font-bold text-white">
+                            <h2 class="mb-6 text-2xl font-bold text-foreground">
                                 {{ $t("contact.form_title") }}
                             </h2>
 
@@ -73,7 +73,7 @@ const sendTicket = () => {
                                 <div>
                                     <label
                                         for="name"
-                                        class="mb-2 block text-sm font-semibold text-zinc-200"
+                                        class="mb-2 block text-sm font-semibold text-muted-foreground"
                                     >
                                         {{ $t("contact.name") }}
                                     </label>
@@ -81,7 +81,7 @@ const sendTicket = () => {
                                         type="text"
                                         id="name"
                                         name="name"
-                                        class="w-full rounded-lg border border-zinc-700 px-4 py-3 transition-colors focus:border-red-500 focus:ring-2 focus:ring-red-500"
+                                        class="w-full rounded-lg border border-border bg-background text-foreground focus:border-red-500 focus:ring-2 focus:ring-red-500"
                                         placeholder="Enter your full name"
                                         v-model="form.name"
                                     />
@@ -92,7 +92,7 @@ const sendTicket = () => {
                                 <div>
                                     <label
                                         for="email"
-                                        class="mb-2 block text-sm font-semibold text-zinc-200"
+                                        class="mb-2 block text-sm font-semibold text-muted-foreground"
                                     >
                                         {{ $t("contact.email") }}
                                     </label>
@@ -100,7 +100,7 @@ const sendTicket = () => {
                                         type="email"
                                         id="email"
                                         name="email"
-                                        class="w-full rounded-lg border border-zinc-700 px-4 py-3 transition-colors focus:border-red-500 focus:ring-2 focus:ring-red-500"
+                                        class="w-full rounded-lg border border-border bg-background text-foreground focus:border-red-500 focus:ring-2 focus:ring-red-500"
                                         placeholder="Enter your email address"
                                         v-model="form.email"
                                     />
@@ -111,7 +111,7 @@ const sendTicket = () => {
                                 <div>
                                     <label
                                         for="subject"
-                                        class="mb-2 block text-sm font-semibold text-zinc-200"
+                                        class="mb-2 block text-sm font-semibold text-muted-foreground"
                                     >
                                         Subject
                                     </label>
@@ -119,7 +119,7 @@ const sendTicket = () => {
                                         type="text"
                                         id="subject"
                                         name="subject"
-                                        class="w-full rounded-lg border border-zinc-700 px-4 py-3 transition-colors focus:border-red-500 focus:ring-2 focus:ring-red-500"
+                                        class="w-full rounded-lg border border-border bg-background text-foreground focus:border-red-500 focus:ring-2 focus:ring-red-500"
                                         placeholder="What is this regarding?"
                                         v-model="form.subject"
                                     />
@@ -130,7 +130,7 @@ const sendTicket = () => {
                                 <div>
                                     <label
                                         for="message"
-                                        class="mb-2 block text-sm font-semibold text-zinc-200"
+                                        class="mb-2 block text-sm font-semibold text-muted-foreground"
                                     >
                                         Message
                                     </label>
@@ -138,7 +138,7 @@ const sendTicket = () => {
                                         id="message"
                                         name="message"
                                         rows="6"
-                                        class="resize-vertical w-full rounded-lg border border-zinc-700 px-4 py-3 transition-colors focus:border-red-500 focus:ring-2 focus:ring-red-500"
+                                        class="resize-vertical w-full rounded-lg border border-border bg-background text-foreground focus:border-red-500 focus:ring-2 focus:ring-red-500"
                                         placeholder="Tell us how we can help you..."
                                         v-model="form.message"
                                     ></textarea>
@@ -149,7 +149,7 @@ const sendTicket = () => {
                                 <div>
                                     <button
                                         type="submit"
-                                        class="w-full cursor-pointer rounded-lg bg-red-600 px-6 py-3 font-semibold text-white transition-colors duration-200 hover:bg-red-700"
+                                        class="w-full cursor-pointer rounded-lg bg-red-600 px-6 py-3 font-semibold text-foreground transition-colors duration-200 hover:bg-red-700"
                                     >
                                         Send Message
                                     </button>
@@ -161,9 +161,9 @@ const sendTicket = () => {
                     <!-- Contact Information Sidebar -->
                     <div class="lg:col-span-1">
                         <div
-                            class="rounded-lg border border-white/10 bg-black p-8"
+                            class="rounded-lg border border-border bg-background p-8"
                         >
-                            <h3 class="mb-6 text-xl font-bold text-white">
+                            <h3 class="mb-6 text-xl font-bold text-foreground">
                                 {{ $t("contact.get_in_touch") }}
                             </h3>
 
@@ -171,11 +171,11 @@ const sendTicket = () => {
                                 <!-- Phone -->
                                 <div>
                                     <h4
-                                        class="mb-2 font-semibold text-white"
+                                        class="mb-2 font-semibold text-foreground"
                                     >
                                         Phone
                                     </h4>
-                                    <p class="text-zinc-200">
+                                    <p class="text-muted-foreground">
                                         +212 661-472362
                                     </p>
                                 </div>
@@ -183,11 +183,11 @@ const sendTicket = () => {
                                 <!-- Email -->
                                 <div>
                                     <h4
-                                        class="mb-2 font-semibold text-white"
+                                        class="mb-2 font-semibold text-foreground"
                                     >
                                         Email
                                     </h4>
-                                    <p class="text-zinc-200">
+                                    <p class="text-muted-foreground">
                                         info@Moataz Locationcar.com
                                     </p>
                                 </div>
@@ -195,11 +195,11 @@ const sendTicket = () => {
                                 <!-- Address -->
                                 <div>
                                     <h4
-                                        class="mb-2 font-semibold text-white"
+                                        class="mb-2 font-semibold text-foreground"
                                     >
                                         Address
                                     </h4>
-                                    <p class="text-zinc-200">
+                                    <p class="text-muted-foreground">
                                         Sidi bernoussi-Anassi<br />
                                         Casablanca<br />
                                         Morocco
@@ -209,11 +209,11 @@ const sendTicket = () => {
                                 <!-- {{ $t("contact.hours") }} -->
                                 <div>
                                     <h4
-                                        class="mb-2 font-semibold text-white"
+                                        class="mb-2 font-semibold text-foreground"
                                     >
                                         {{ $t("contact.hours") }}
                                     </h4>
-                                    <div class="space-y-1 text-zinc-200">
+                                    <div class="space-y-1 text-muted-foreground">
                                         <p>
                                             Monday - Friday: 8:00 AM - 8:00 PM
                                         </p>
@@ -226,9 +226,9 @@ const sendTicket = () => {
 
                         <!-- {{ $t("contact.quick_links") }} -->
                         <div
-                            class="mt-8 rounded-lg border border-white/10 bg-zinc-950 border border-white/10/60 backdrop-blur-xl p-6"
+                            class="mt-8 rounded-lg border border-border bg-background backdrop-blur-xl p-6"
                         >
-                            <h3 class="mb-4 text-lg font-bold text-white">
+                            <h3 class="mb-4 text-lg font-bold text-foreground">
                                 {{ $t("contact.quick_links") }}
                             </h3>
                             <div class="space-y-3">

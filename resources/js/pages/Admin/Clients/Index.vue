@@ -128,27 +128,27 @@ const navigateToClient = (id: number) => {
         </div>
       </div>
 
-      <div class="overflow-x-auto rounded-lg bg-white border border-gray-200 shadow">
-        <table class="min-w-full divide-y divide-gray-200">
-          <thead class="bg-gray-50">
+      <div class="overflow-x-auto rounded-lg bg-background border border-border shadow-sm">
+        <table class="min-w-full divide-y divide-border">
+          <thead class="bg-muted/50">
             <tr>
-              <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Client</th>
-              <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Reservations</th>
-              <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Payments</th>
-              <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+              <th class="px-4 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">Client</th>
+              <th class="px-4 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">Reservations</th>
+              <th class="px-4 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">Payments</th>
+              <th class="px-4 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">Status</th>
               <th class="px-4 py-3"></th>
             </tr>
           </thead>
-          <tbody class="divide-y divide-gray-200 bg-white text-black">
+          <tbody class="divide-y divide-border bg-background text-foreground">
             <tr
               v-for="c in props.clients.data"
               :key="c.id"
-              class="cursor-pointer transition-colors hover:bg-gray-100"
+              class="cursor-pointer transition-colors hover:bg-muted/50"
               @click="navigateToClient(c.id)"
             >
               <td class="px-4 py-3">
                 <div class="font-medium">{{ c.name }}</div>
-                <div class="text-xs text-zinc-500">{{ c.email }}</div>
+                <div class="text-xs text-muted-foreground">{{ c.email }}</div>
               </td>
               <td class="px-4 py-3">{{ c.reservations_count }}</td>
               <td class="px-4 py-3">{{ c.payments_count }}</td>
@@ -183,8 +183,8 @@ const navigateToClient = (id: number) => {
           :key="i"
           :href="link.url || ''"
           :class="[
-            'px-3 py-1 rounded text-sm',
-            link.active ? 'bg-black text-white' : 'bg-zinc-950 border border-white/10 text-zinc-200',
+            'px-3 py-1 rounded text-sm transition-all',
+            link.active ? 'bg-primary text-primary-foreground font-bold' : 'bg-muted border border-border text-muted-foreground hover:bg-muted/80',
             !link.url && 'pointer-events-none opacity-50',
           ]"
         >

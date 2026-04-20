@@ -29,6 +29,9 @@ const form = useForm({
     end_date: '',
     pickup_location: '',
     return_location: '',
+    guest_name: usePage().props.auth.user ? (usePage().props.auth.user as any).name : '',
+    guest_email: usePage().props.auth.user ? (usePage().props.auth.user as any).email : '',
+    guest_phone: '',
 });
 
 // Calculate rental details
@@ -49,37 +52,36 @@ const total = computed(() => {
 });
 
 const canSubmit = computed(() => {
-    return (
+    const baseValid =
         form.start_date &&
         form.end_date &&
         form.pickup_location &&
         form.return_location &&
-        rentalDays.value > 0
-    );
+        rentalDays.value > 0;
+
+    return baseValid && form.guest_name && form.guest_phone;
 });
 
 const submitBooking = () => {
     const user = $page.props.auth.user;
 
     if (!user) {
-        // Not authenticated → redirect to login
-        router.get(login.url());
+        // Guest booking
+        form.post(book.url(car.value.id));
         return;
     }
 
     if (user.role === 'client') {
-        // Authenticated and role is "user" → make booking
+        // Authenticated as client
         form.post(book.url(car.value.id));
         return;
     }
 
     if (user.role === 'admin') {
-        // Authenticated but role is "admin" → show alert
         alert("You cannot book as an admin.");
         return;
     }
 
-    // fallback for any other role
     alert("Your role does not allow booking.");
 };
 
@@ -107,25 +109,38 @@ const images = computed(() => {
 });
 
 const commonLocations = [
-    'Downtown Office',
-    'Airport Terminal 1',
-    'Airport Terminal 2',
-    'Central Station',
-    'Mall Plaza',
-    'Hotel District',
-    'Business District',
+    'Casablanca',
+    'Casablanca - Aeroport Mohammed V',
+    'Rabat',
+    'Marrakech',
+    'Marrakech - Aeroport Menara',
+    'Tangier',
+    'Tangier - Aeroport Ibn Battouta',
+    'Agadir',
+    'Fes',
+    'Meknes',
+    'Oujda',
+    'Kenitra',
+    'Tetouan',
+    'Safi',
+    'El Jadida',
+    'Nador',
+    'Beni Mellal',
+    'Mohammedia',
+    'Taza',
+    'Khemisset'
 ];
 </script>
 <template>
     <HomeLayout>
         <div
-            class="min-h-screen bg-black py-8"
+            class="min-h-screen bg-background py-8"
         >
             <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <!--  Header -->
                 <div class="mb-8">
                     <nav
-                        class="mb-6 flex items-center space-x-2 text-sm text-zinc-200"
+                        class="mb-6 flex items-center space-x-2 text-sm text-muted-foreground"
                     >
                         <a
                             href="/fleet"
@@ -133,7 +148,7 @@ const commonLocations = [
                             >{{ $t("nav.fleet") }}</a
                         >
                         <svg
-                            class="h-4 w-4 text-zinc-200"
+                            class="h-4 w-4 text-muted-foreground"
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
@@ -145,7 +160,7 @@ const commonLocations = [
                                 d="M9 5l7 7-7 7"
                             ></path>
                         </svg>
-                        <span class="font-medium text-white"
+                        <span class="font-medium text-foreground"
                             >{{ car.make }} {{ car.model }}</span
                         >
                     </nav>
@@ -154,7 +169,7 @@ const commonLocations = [
                             class="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-r from-red-600 to-red-700"
                         >
                             <svg
-                                class="h-6 w-6 text-white"
+                                class="h-6 w-6 text-foreground"
                                 fill="none"
                                 stroke="currentColor"
                                 viewBox="0 0 24 24"
@@ -169,11 +184,11 @@ const commonLocations = [
                         </div>
                         <div>
                             <h1
-                                class="text-4xl leading-tight font-bold text-white"
+                                class="text-4xl leading-tight font-bold text-foreground"
                             >
                                 Book {{ car.make }} {{ car.model }}
                             </h1>
-                            <p class="mt-1 text-zinc-200">
+                            <p class="mt-1 text-muted-foreground">
                                 {{ $t("booking.subtitle") }}
                             </p>
                         </div>
@@ -185,7 +200,7 @@ const commonLocations = [
                     <div class="space-y-8 lg:col-span-2">
                         <!--  Car Images -->
                         <div
-                            class="overflow-hidden rounded-2xl border border-white/5 bg-zinc-950 border border-white/10/60 backdrop-blur-xl shadow-lg"
+                            class="overflow-hidden rounded-2xl border border-border bg-background backdrop-blur-xl shadow-lg"
                         >
                             <div
                                 class="relative h-72 bg-gradient-to-br from-gray-100 to-gray-200 sm:h-96"
@@ -204,12 +219,12 @@ const commonLocations = [
                                 >
                                     <div>
                                         <h2
-                                            class="mb-2 text-3xl font-bold text-white"
+                                            class="mb-2 text-3xl font-bold text-foreground"
                                         >
                                             {{ car.make }} {{ car.model }}
                                         </h2>
                                         <div
-                                            class="flex items-center space-x-6 text-sm text-zinc-200"
+                                            class="flex items-center space-x-6 text-sm text-muted-foreground"
                                         >
                                             <span
                                                 class="flex items-center rounded-full bg-zinc-950 border border-white/10 px-3 py-1"
@@ -253,7 +268,7 @@ const commonLocations = [
                                         <div
                                             class="rounded-xl bg-white/5 px-4 py-3"
                                         >
-                                            <span class="text-3xl font-bold text-white"
+                                            <span class="text-3xl font-bold text-foreground"
                                                 >{{ car.price_per_day }} DH</span
                                             >
                                             <span
@@ -264,7 +279,7 @@ const commonLocations = [
                                     </div>
                                 </div>
 
-                                <p class="leading-relaxed text-zinc-200">
+                                <p class="leading-relaxed text-muted-foreground">
                                     {{ car.description }}
                                 </p>
                             </div>
@@ -272,14 +287,14 @@ const commonLocations = [
 
                         <!--  Booking Form -->
                         <div
-                            class="rounded-2xl border border-white/5 bg-zinc-950 border border-white/10/60 backdrop-blur-xl p-8 shadow-lg"
+                            class="rounded-2xl border border-border bg-background backdrop-blur-xl p-8 shadow-lg"
                         >
                             <div class="mb-8 flex items-center space-x-3">
                                 <div
                                     class="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-r from-red-600 to-red-700"
                                 >
                                     <svg
-                                        class="h-5 w-5 text-white"
+                                        class="h-5 w-5 text-foreground"
                                         fill="none"
                                         stroke="currentColor"
                                         viewBox="0 0 24 24"
@@ -292,16 +307,43 @@ const commonLocations = [
                                         ></path>
                                     </svg>
                                 </div>
-                                <h3 class="text-2xl font-bold text-white">
+                                <h3 class="text-2xl font-bold text-foreground">
                                     {{ $t("booking.details") }}
                                 </h3>
                             </div>
 
-                            <form class="space-y-8">
+                            <form class="space-y-8" @submit.prevent="submitBooking">
+                                <!-- Customer Information -->
+                                <div class="space-y-6">
+                                    <h4 class="flex items-center text-lg font-semibold text-foreground">
+                                        <svg class="mr-2 h-5 w-5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                                        </svg>
+                                        {{ $t("booking.customer_info") }}
+                                    </h4>
+                                    <div class="grid gap-6 md:grid-cols-2">
+                                        <div class="space-y-2">
+                                            <label class="block text-sm font-semibold text-muted-foreground">{{ $t("booking.full_name") }}</label>
+                                            <input v-model="form.guest_name" type="text" required class="w-full rounded-xl border-2 border-border bg-background text-foreground px-4 py-4 transition-all duration-200 focus:border-red-500 focus:ring-2 focus:ring-red-500" :class="{'border-red-500': form.errors.guest_name}" />
+                                            <span v-if="form.errors.guest_name" class="text-sm text-red-500">{{ form.errors.guest_name }}</span>
+                                        </div>
+                                        <div class="space-y-2">
+                                            <label class="block text-sm font-semibold text-muted-foreground">{{ $t("booking.email_address") }}</label>
+                                            <input v-model="form.guest_email" type="email" class="w-full rounded-xl border-2 border-border bg-background text-foreground px-4 py-4 transition-all duration-200 focus:border-red-500 focus:ring-2 focus:ring-red-500" :class="{'border-red-500': form.errors.guest_email}" />
+                                            <span v-if="form.errors.guest_email" class="text-sm text-red-500">{{ form.errors.guest_email }}</span>
+                                        </div>
+                                        <div class="space-y-2 md:col-span-2">
+                                            <label class="block text-sm font-semibold text-muted-foreground">{{ $t("booking.phone_number") }}</label>
+                                            <input v-model="form.guest_phone" type="tel" required class="w-full rounded-xl border-2 border-border bg-background text-foreground px-4 py-4 transition-all duration-200 focus:border-red-500 focus:ring-2 focus:ring-red-500" :class="{'border-red-500': form.errors.guest_phone}" />
+                                            <span v-if="form.errors.guest_phone" class="text-sm text-red-500">{{ form.errors.guest_phone }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="border-b border-white/10 pb-4"></div>
+                                </div>
                                 <!--  Rental Dates -->
                                 <div class="space-y-4">
                                     <h4
-                                        class="flex items-center text-lg font-semibold text-white"
+                                        class="flex items-center text-lg font-semibold text-foreground"
                                     >
                                         <svg
                                             class="mr-2 h-5 w-5 text-red-500"
@@ -321,7 +363,7 @@ const commonLocations = [
                                     <div class="grid gap-6 md:grid-cols-2">
                                         <div class="space-y-2">
                                             <label
-                                                class="block text-sm font-semibold text-zinc-200"
+                                                class="block text-sm font-semibold text-muted-foreground"
                                             >
                                                 {{ $t("booking.pickup_date") }}
                                             </label>
@@ -331,7 +373,7 @@ const commonLocations = [
                                                 :min="$page.props.minDate || today"
                                                 :max="$page.props.maxDate"
                                                 required
-                                                class="w-full rounded-xl border-2 border-white/10 bg-zinc-950 text-white [color-scheme:dark] px-4 py-4 text-lg transition-all duration-200 focus:border-red-500 focus:ring-2 focus:ring-red-500"
+                                                class="w-full rounded-xl border-2 border-border bg-background text-foreground px-4 py-4 text-lg transition-all duration-200 focus:border-red-500 focus:ring-2 focus:ring-red-500"
                                                 :class="{
                                                     'border-red-500 focus:border-red-500 focus:ring-red-500':
                                                         form.errors.start_date,
@@ -347,7 +389,7 @@ const commonLocations = [
 
                                         <div class="space-y-2">
                                             <label
-                                                class="block text-sm font-semibold text-zinc-200"
+                                                class="block text-sm font-semibold text-muted-foreground"
                                             >
                                                 {{ $t("booking.return_date") }}
                                             </label>
@@ -357,7 +399,7 @@ const commonLocations = [
                                                 :min="form.start_date || $page.props.minDate || today"
                                                 :max="$page.props.maxDate"
                                                 required
-                                                class="w-full rounded-xl border-2 border-white/10 bg-zinc-950 text-white [color-scheme:dark] px-4 py-4 text-lg transition-all duration-200 focus:border-red-500 focus:ring-2 focus:ring-red-500"
+                                                class="w-full rounded-xl border-2 border-border bg-background text-foreground px-4 py-4 text-lg transition-all duration-200 focus:border-red-500 focus:ring-2 focus:ring-red-500"
                                                 :class="{
                                                     'border-red-500 focus:border-red-500 focus:ring-red-500':
                                                         form.errors.end_date,
@@ -376,7 +418,7 @@ const commonLocations = [
                                 <!--  Locations -->
                                 <div class="space-y-4">
                                     <h4
-                                        class="flex items-center text-lg font-semibold text-white"
+                                        class="flex items-center text-lg font-semibold text-foreground"
                                     >
                                         <svg
                                             class="mr-2 h-5 w-5 text-red-500"
@@ -402,14 +444,14 @@ const commonLocations = [
                                     <div class="grid gap-6 md:grid-cols-2">
                                         <div class="space-y-2">
                                             <label
-                                                class="block text-sm font-semibold text-zinc-200"
+                                                class="block text-sm font-semibold text-muted-foreground"
                                             >
                                                 {{ $t("booking.pickup_loc") }}
                                             </label>
                                             <select
                                                 v-model="form.pickup_location"
                                                 required
-                                                class="w-full rounded-xl border-2 border-white/10 bg-zinc-950 text-white border border-white/10/60 backdrop-blur-xl px-4 py-4 text-lg transition-all duration-200 focus:border-red-500 focus:ring-2 focus:ring-red-500"
+                                                class="w-full rounded-xl border-2 border-border bg-background text-foreground px-4 py-4 text-lg transition-all duration-200 focus:border-red-500 focus:ring-2 focus:ring-red-500"
                                                 :class="{
                                                     'border-red-500 focus:border-red-500 focus:ring-red-500':
                                                         form.errors
@@ -441,14 +483,14 @@ const commonLocations = [
 
                                         <div class="space-y-2">
                                             <label
-                                                class="block text-sm font-semibold text-zinc-200"
+                                                class="block text-sm font-semibold text-muted-foreground"
                                             >
                                                 {{ $t("booking.return_loc") }}
                                             </label>
                                             <select
                                                 v-model="form.return_location"
                                                 required
-                                                class="w-full rounded-xl border-2 border-white/10 bg-zinc-950 text-white border border-white/10/60 backdrop-blur-xl px-4 py-4 text-lg transition-all duration-200 focus:border-red-500 focus:ring-2 focus:ring-red-500"
+                                                class="w-full rounded-xl border-2 border-border bg-background text-foreground px-4 py-4 text-lg transition-all duration-200 focus:border-red-500 focus:ring-2 focus:ring-red-500"
                                                 :class="{
                                                     'border-red-500 focus:border-red-500 focus:ring-red-500':
                                                         form.errors
@@ -486,14 +528,14 @@ const commonLocations = [
                     <!--  Price Summary Sidebar -->
                     <div class="lg:col-span-1">
                         <div
-                            class="sticky top-4 rounded-2xl border border-white/5 bg-zinc-950 border border-white/10/60 backdrop-blur-xl p-8 shadow-lg"
+                            class="sticky top-4 rounded-2xl border border-border bg-background backdrop-blur-xl p-8 shadow-lg"
                         >
                             <div class="mb-6 flex items-center space-x-3">
                                 <div
                                     class="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-r from-red-600 to-red-700"
                                 >
                                     <svg
-                                        class="h-5 w-5 text-white"
+                                        class="h-5 w-5 text-foreground"
                                         fill="none"
                                         stroke="currentColor"
                                         viewBox="0 0 24 24"
@@ -506,22 +548,22 @@ const commonLocations = [
                                         ></path>
                                     </svg>
                                 </div>
-                                <h3 class="text-2xl font-bold text-white">
+                                <h3 class="text-2xl font-bold text-foreground">
                                     {{ $t("booking.summary") }}
                                 </h3>
                             </div>
 
                             <div class="mb-8 space-y-6">
                                 <div
-                                    class="space-y-4 rounded-xl bg-black p-4"
+                                    class="space-y-4 rounded-xl bg-accent p-4"
                                 >
                                     <div
                                         class="flex items-center justify-between"
                                     >
-                                        <span class="font-medium text-zinc-200"
+                                        <span class="font-medium text-muted-foreground"
                                             >{{ $t("booking.period") }}</span
                                         >
-                                        <span class="font-bold text-white">
+                                        <span class="font-bold text-foreground">
                                             {{
                                                 rentalDays > 0
                                                     ? `${rentalDays} ${rentalDays > 1 ? $t('booking.days') : $t('booking.day')}`
@@ -533,12 +575,29 @@ const commonLocations = [
                                     <div
                                         class="flex items-center justify-between"
                                     >
-                                        <span class="font-medium text-zinc-200"
+                                        <span class="font-medium text-muted-foreground"
                                             >{{ $t("booking.daily_rate") }}</span
                                         >
-                                        <span class="font-medium text-white"
+                                        <span class="font-medium text-foreground"
                                             >{{ car.price_per_day }} DH / {{ $t("booking.day") }}</span
                                         >
+                                    </div>
+                                </div>
+
+                                <!-- Contact Summary -->
+                                <div v-if="form.guest_name || form.guest_email" class="space-y-3 rounded-xl border border-border p-4">
+                                    <h4 class="text-xs font-bold uppercase tracking-wider text-muted-foreground">{{ $t("booking.customer_info") }}</h4>
+                                    <div v-if="form.guest_name" class="flex justify-between text-sm">
+                                        <span class="text-muted-foreground">Name:</span>
+                                        <span class="font-medium text-foreground">{{ form.guest_name }}</span>
+                                    </div>
+                                    <div v-if="form.guest_phone" class="flex justify-between text-sm">
+                                        <span class="text-muted-foreground">Phone:</span>
+                                        <span class="font-medium text-foreground">{{ form.guest_phone }}</span>
+                                    </div>
+                                    <div v-if="form.guest_email" class="flex justify-between text-sm">
+                                        <span class="text-muted-foreground">Email:</span>
+                                        <span class="font-medium text-foreground truncate ml-4">{{ form.guest_email }}</span>
                                     </div>
                                 </div>
 
@@ -546,13 +605,13 @@ const commonLocations = [
 
 
                                     <div
-                                        class="border-t-2 border-white/10 pt-4"
+                                        class="border-t-2 border-border pt-4"
                                     >
                                         <div
                                             class="flex items-center justify-between"
                                         >
                                             <span
-                                                class="text-xl font-bold text-white"
+                                                class="text-xl font-bold text-foreground"
                                                 >{{ $t("booking.total") }}</span
                                             >
                                             <span
@@ -574,9 +633,9 @@ const commonLocations = [
                                 @click="submitBooking"
                                 :disabled="!canSubmit || form.processing"
                                 :class="{
-                                    'transform cursor-pointer bg-gradient-to-r from-red-600 to-red-700 text-white shadow-lg hover:scale-[1.01] hover:from-red-700 hover:to-red-800 hover:shadow-xl':
+                                    'transform cursor-pointer bg-gradient-to-r from-red-600 to-red-700 text-foreground shadow-lg hover:scale-[1.01] hover:from-red-700 hover:to-red-800 hover:shadow-xl':
                                         canSubmit && !form.processing,
-                                    'cursor-not-allowed bg-gray-300 text-zinc-200':
+                                    'cursor-not-allowed bg-gray-300 text-muted-foreground':
                                         !canSubmit || form.processing,
                                 }"
                                 class="w-full rounded-xl px-6 py-5 text-lg font-bold transition-all duration-300"
@@ -586,7 +645,7 @@ const commonLocations = [
                                     class="flex items-center justify-center"
                                 >
                                     <svg
-                                        class="mr-3 -ml-1 h-6 w-6 animate-spin text-white"
+                                        class="mr-3 -ml-1 h-6 w-6 animate-spin text-foreground"
                                         fill="none"
                                         viewBox="0 0 24 24"
                                     >
@@ -620,10 +679,10 @@ const commonLocations = [
                                             stroke-linecap="round"
                                             stroke-linejoin="round"
                                             stroke-width="2"
-                                            d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"
+                                            d="M5 13l4 4L19 7"
                                         ></path>
                                     </svg>
-                                    {{ $t("booking.login_to_book") }}
+                                    {{ $t("fleet.book_now") }}
                                 </span>
                                 <span
                                     v-else

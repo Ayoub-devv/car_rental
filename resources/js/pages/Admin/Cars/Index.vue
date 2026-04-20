@@ -78,7 +78,7 @@ const statusColors = computed(() => {
 const getStatusColor = (status: string) => {
   return statusColors.value[status] || { 
     bg: 'rgba(107, 114, 128, 0.1)', 
-    text: 'text-zinc-200', 
+    text: '#6B7280', 
     dot: '#6B7280' 
   };
 }
@@ -195,19 +195,19 @@ const destroyCar = () => {
                 </div>
             </div>
 
-            <div class="overflow-x-auto rounded-lg bg-white border border-gray-200 shadow">
-                <table class="min-w-full divide-y divide-gray-200">
-                    <thead class="bg-gray-50">
+            <div class="overflow-x-auto rounded-lg bg-background border border-border shadow-sm">
+                <table class="min-w-full divide-y divide-border">
+                    <thead class="bg-muted/50">
                         <tr>
-                            <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Image</th>
-                            <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Car</th>
-                            <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Plate</th>
-                            <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Price/Day</th>
-                            <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                            <th class="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                            <th class="px-4 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">Image</th>
+                            <th class="px-4 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">Car</th>
+                            <th class="px-4 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">Plate</th>
+                            <th class="px-4 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">Price/Day</th>
+                            <th class="px-4 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">Status</th>
+                            <th class="px-4 py-3 text-right text-xs font-medium text-muted-foreground uppercase tracking-wider">Actions</th>
                         </tr>
                     </thead>
-                    <tbody class="divide-y divide-gray-200 bg-white text-black">
+                    <tbody class="divide-y divide-border bg-background text-foreground">
                         <tr v-for="car in props.cars.data" :key="car.id">
                             <td class="px-4 py-3">
                                 <img :src="car.image_url"  alt="Car" class="h-12 w-16 object-cover rounded" />
@@ -222,7 +222,7 @@ const destroyCar = () => {
                                   class="inline-flex items-center gap-2 rounded-full px-2.5 py-1 text-xs font-medium"
                                   :style="{
                                     backgroundColor: getStatusColor(car.status).bg,
-                                    color: getStatusColor(car.status).text
+                                    color: getStatusColor(car.status).dot
                                   }"
                                 >
                                   <span 
@@ -235,11 +235,11 @@ const destroyCar = () => {
                             <td class="px-4 py-3 text-right">
                                 <DropdownMenu>
                                     <DropdownMenuTrigger as-child>
-                                        <button class="inline-flex items-center justify-center rounded-md p-1.5 text-gray-500 hover:bg-gray-100 hover:text-gray-700 transition-colors">
+                                        <button class="inline-flex items-center justify-center rounded-md p-1.5 text-muted-foreground hover:bg-muted hover:text-foreground transition-colors">
                                             <MoreVertical class="h-5 w-5" />
                                         </button>
                                     </DropdownMenuTrigger>
-                                    <DropdownMenuContent align="end" class="w-40 bg-white text-gray-900 border border-gray-200">
+                                    <DropdownMenuContent align="end" class="w-40 bg-background text-foreground border border-border">
                                         <DropdownMenuItem as-child>
                                             <Link :href="`/admin/cars/${car.id}/edit`" class="flex items-center gap-2 cursor-pointer">
                                                 <Pencil class="h-4 w-4" />
@@ -258,7 +258,7 @@ const destroyCar = () => {
                             </td>
                         </tr>
                         <tr v-if="props.cars.data.length === 0">
-                            <td colspan="6" class="px-4 py-6 text-center text-gray-400">No cars found.</td>
+                            <td colspan="6" class="px-4 py-6 text-center text-muted-foreground">No cars found.</td>
                         </tr>
                     </tbody>
                 </table>
@@ -270,8 +270,8 @@ const destroyCar = () => {
                     :key="i"
                     :href="link.url || ''"
                     :class="[
-                        'px-3 py-1 rounded text-sm',
-                        link.active ? 'bg-black text-white' : 'bg-zinc-950 border border-white/10 text-zinc-200',
+                        'px-3 py-1 rounded text-sm transition-all',
+                        link.active ? 'bg-primary text-primary-foreground font-bold' : 'bg-muted border border-border text-muted-foreground hover:bg-muted/80',
                         !link.url && 'pointer-events-none opacity-50'
                     ]"
                 >

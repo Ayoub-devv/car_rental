@@ -14,7 +14,7 @@ class PaymentsController extends Controller
     public function index(Request $request): Response
     {
         $payments = Payment::query()
-            ->with(['user:id,name,email', 'reservation:id,reservation_number'])
+            ->with(['user:id,name,email', 'reservation:id,reservation_number,guest_name,guest_email'])
             ->orderByDesc('created_at')
             ->paginate(10)
             ->withQueryString();

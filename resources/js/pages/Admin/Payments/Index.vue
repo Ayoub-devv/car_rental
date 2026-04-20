@@ -68,56 +68,56 @@ const getStatusColor = (status: string) => {
                 <h1 class="text-2xl font-semibold">Payments</h1>
             </div>
 
-            <div class="overflow-x-auto rounded-lg bg-white border border-gray-200 shadow">
-                <table class="min-w-full divide-y divide-gray-200">
-                    <thead class="bg-gray-50">
+            <div class="overflow-x-auto rounded-lg bg-background border border-border shadow-sm">
+                <table class="min-w-full divide-y divide-border">
+                    <thead class="bg-muted/50">
                         <tr>
                             <th
-                                class="px-4 py-3 text-left text-xs font-medium tracking-wider text-gray-500 uppercase"
+                                class="px-4 py-3 text-left text-xs font-medium tracking-wider text-muted-foreground uppercase"
                             >
                                 #
                             </th>
                             <th
-                                class="px-4 py-3 text-left text-xs font-medium tracking-wider text-gray-500 uppercase"
+                                class="px-4 py-3 text-left text-xs font-medium tracking-wider text-muted-foreground uppercase"
                             >
                                 Client
                             </th>
                             <th
-                                class="px-4 py-3 text-left text-xs font-medium tracking-wider text-gray-500 uppercase"
+                                class="px-4 py-3 text-left text-xs font-medium tracking-wider text-muted-foreground uppercase"
                             >
                                 Reservation
                             </th>
                             <th
-                                class="px-4 py-3 text-left text-xs font-medium tracking-wider text-gray-500 uppercase"
+                                class="px-4 py-3 text-left text-xs font-medium tracking-wider text-muted-foreground uppercase"
                             >
                                 Amount
                             </th>
                             <th
-                                class="px-4 py-3 text-left text-xs font-medium tracking-wider text-gray-500 uppercase"
+                                class="px-4 py-3 text-left text-xs font-medium tracking-wider text-muted-foreground uppercase"
                             >
                                 Method
                             </th>
                             <th
-                                class="px-4 py-3 text-left text-xs font-medium tracking-wider text-gray-500 uppercase"
+                                class="px-4 py-3 text-left text-xs font-medium tracking-wider text-muted-foreground uppercase"
                             >
                                 Status
                             </th>
                             <th
-                                class="px-4 py-3 text-left text-xs font-medium tracking-wider text-gray-500 uppercase"
+                                class="px-4 py-3 text-left text-xs font-medium tracking-wider text-muted-foreground uppercase"
                             >
                                 Processed
                             </th>
                         </tr>
                     </thead>
-                    <tbody class="divide-y divide-gray-200 bg-white text-black">
+                    <tbody class="divide-y divide-border bg-background text-foreground">
                         <tr v-for="p in props.payments.data" :key="p.id">
                             <td class="px-4 py-3">{{ p.payment_number }}</td>
                             <td class="px-4 py-3">
                                 <div class="font-medium">
-                                    {{ p.user?.name || '—' }}
+                                    {{ p.user ? p.user.name : (p.reservation?.guest_name || '—') }}
                                 </div>
-                                <div class="text-xs text-zinc-500">
-                                    {{ p.user?.email }}
+                                <div class="text-xs text-muted-foreground">
+                                    {{ p.user ? p.user.email : p.reservation?.guest_email }}
                                 </div>
                             </td>
                             <td class="px-4 py-3">
@@ -130,7 +130,7 @@ const getStatusColor = (status: string) => {
                                 </Link>
                                 <span v-else>—</span>
                             </td>
-                            <td class="px-4 py-3 font-semibold text-green-800">
+                            <td class="px-4 py-3 font-semibold text-foreground">
                                 {{ fmtMoney(p.amount) }}
                             </td>
                             <td class="px-4 py-3">{{ p.payment_method }}</td>
@@ -183,10 +183,10 @@ const getStatusColor = (status: string) => {
                     :key="i"
                     :href="link.url || ''"
                     :class="[
-                        'rounded px-3 py-1 text-sm',
+                        'rounded px-3 py-1 text-sm transition-all',
                         link.active
-                            ? 'bg-black text-white'
-                            : 'bg-zinc-950 border border-white/10 text-zinc-200',
+                            ? 'bg-primary text-primary-foreground font-bold'
+                            : 'bg-muted border border-border text-muted-foreground hover:bg-muted/80',
                         !link.url && 'pointer-events-none opacity-50',
                     ]"
                 >

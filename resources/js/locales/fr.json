@@ -160,7 +160,11 @@
     "processing": "Traitement...",
     "login_to_book": "Se Connecter",
     "day": "jour",
-    "days": "jours"
+    "days": "jours",
+    "customer_info": "Informations Client",
+    "full_name": "Nom Complet",
+    "email_address": "Adresse Email (Optionnel)",
+    "phone_number": "Numéro de Téléphone"
   },
   "auth": {
     "login_title": "Connectez-vous à votre compte",
@@ -177,5 +181,20 @@
     "name": "Nom complet",
     "confirm": "Confirmer le mot de passe",
     "have_account": "Vous avez déjà un compte ?"
+  },
+  "footer": {
+    "desc": "Service de location de voitures haut de gamme offrant des véhicules de luxe et fiables pour tous vos besoins de transport avec un service client exceptionnel.",
+    "services": "Services",
+    "luxury_rental": "Location de Luxe",
+    "long_term_rental": "Location Longue Durée",
+    "corporate_solutions": "Solutions Entreprise",
+    "airport_transfers": "Transferts Aéroport",
+    "support": "Support",
+    "help_center": "Centre d'Aide",
+    "terms": "Conditions Générales",
+    "privacy": "Politique de Confidentialité",
+    "contact_info": "Contact",
+    "location": "Casablanca, Maroc",
+    "rights": "Tous droits réservés."
   }
 }

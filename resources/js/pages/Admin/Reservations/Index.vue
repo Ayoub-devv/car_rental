@@ -13,6 +13,9 @@ const props = defineProps<{
             id: number;
             reservation_number: string;
             user: { id: number; name: string; email: string } | null;
+            guest_name?: string;
+            guest_email?: string;
+            guest_phone?: string;
             car: {
                 id: number;
                 make: string;
@@ -55,13 +58,11 @@ const statusColors = computed(() => {
 });
 
 const getStatusColor = (status: string) => {
-    return (
-        statusColors.value[status] || {
-            bg: 'rgba(107, 114, 128, 0.1)',
-            text: 'text-zinc-200',
-            dot: '#6B7280',
-        }
-    );
+    return statusColors.value[status] || {
+        bg: 'rgba(107, 114, 128, 0.1)',
+        text: '#6B7280',
+        dot: '#6B7280',
+    };
 };
 
 const search = ref(props.filters?.search || '');
@@ -172,48 +173,48 @@ watch(search, (v, ov) => {
                 </div>
             </div>
 
-            <div class="overflow-x-auto rounded-lg bg-white border border-gray-200 shadow">
-                <table class="min-w-full divide-y divide-gray-200 border border-white/10/60 backdrop-blur-xl">
-                    <thead class="bg-white-50">
+            <div class="overflow-x-auto rounded-lg bg-background border border-border shadow-sm">
+                <table class="min-w-full divide-y divide-border border border-border">
+                    <thead class="bg-muted/50">
                         <tr>
                             <th
-                                class="px-4 py-3 text-left text-xs font-medium tracking-wider text-gray-500 uppercase"
+                                class="px-4 py-3 text-left text-xs font-medium tracking-wider text-muted-foreground uppercase"
                             >
                                 #
                             </th>
                             <th
-                                class="px-4 py-3 text-left text-xs font-medium tracking-wider text-gray-500 uppercase"
+                                class="px-4 py-3 text-left text-xs font-medium tracking-wider text-muted-foreground uppercase"
                             >
                                 Client
                             </th>
                             <th
-                                class="px-4 py-3 text-left text-xs font-medium tracking-wider text-gray-500 uppercase"
+                                class="px-4 py-3 text-left text-xs font-medium tracking-wider text-muted-foreground uppercase"
                             >
                                 Car
                             </th>
                             <th
-                                class="px-4 py-3 text-left text-xs font-medium tracking-wider text-gray-500 uppercase"
+                                class="px-4 py-3 text-left text-xs font-medium tracking-wider text-muted-foreground uppercase"
                             >
                                 Dates
                             </th>
                             <th
-                                class="px-4 py-3 text-left text-xs font-medium tracking-wider text-gray-500 uppercase"
+                                class="px-4 py-3 text-left text-xs font-medium tracking-wider text-muted-foreground uppercase"
                             >
                                 Total
                             </th>
                             <th
-                                class="px-4 py-3 text-left text-xs font-medium tracking-wider text-gray-500 uppercase"
+                                class="px-4 py-3 text-left text-xs font-medium tracking-wider text-muted-foreground uppercase"
                             >
                                 Status
                             </th>
                         </tr>
                     </thead>
-                    <tbody class="divide-y divide-gray-200 bg-white text-black">
+                    <tbody class="divide-y divide-border bg-background text-foreground">
                         <tr
                             v-for="res in props.reservations.data"
                             :key="res.id"
                             @click="navigateToReservation(res.id)"
-                            class="cursor-pointer transition-colors hover:bg-gray-100"
+                            class="cursor-pointer transition-colors hover:bg-muted/50"
                         >
                             <td class="px-4 py-3">
                                 <div class="font-medium">
@@ -222,10 +223,10 @@ watch(search, (v, ov) => {
                             </td>
                             <td class="px-4 py-3">
                                 <div class="font-medium">
-                                    {{ res.user?.name || '—' }}
+                                    {{ res.guest_name || (res.user ? res.user.name : '—') }}
                                 </div>
-                                <div class="text-xs text-zinc-500">
-                                    {{ res.user?.email }}
+                                <div class="text-xs text-muted-foreground">
+                                    {{ res.guest_email || (res.user ? res.user.email : '') }}
                                 </div>
                             </td>
                             <td class="px-4 py-3">
@@ -236,7 +237,7 @@ watch(search, (v, ov) => {
                                             : '—'
                                     }}
                                 </div>
-                                <div class="text-xs text-zinc-500">
+                                <div class="text-xs text-muted-foreground">
                                     {{ res.car?.license_plate }}
                                 </div>
                             </td>
@@ -255,7 +256,7 @@ watch(search, (v, ov) => {
                                     }}
                                 </div>
                                 <!-- duration in days-->
-                                <div class="text-xs text-zinc-500">
+                                <div class="text-xs text-muted-foreground">
                                     {{ res.total_days }} days
                                 </div>
                             </td>
@@ -266,10 +267,8 @@ watch(search, (v, ov) => {
                                 <span
                                     class="inline-flex items-center gap-2 rounded-full px-2.5 py-1 text-xs font-medium"
                                     :style="{
-                                        backgroundColor: getStatusColor(
-                                            res.status,
-                                        ).bg,
-                                        color: getStatusColor(res.status).text,
+                                        backgroundColor: getStatusColor(res.status).bg,
+                                        color: getStatusColor(res.status).dot
                                     }"
                                 >
                                     <span
@@ -305,10 +304,10 @@ watch(search, (v, ov) => {
                     :key="i"
                     :href="link.url || ''"
                     :class="[
-                        'rounded px-3 py-1 text-sm',
+                        'rounded px-3 py-1 text-sm transition-all',
                         link.active
-                            ? 'bg-black text-white'
-                            : 'bg-zinc-950 border border-white/10 text-zinc-200',
+                            ? 'bg-primary text-primary-foreground font-bold'
+                            : 'bg-muted border border-border text-muted-foreground hover:bg-muted/80',
                         !link.url && 'pointer-events-none opacity-50',
                     ]"
                 >

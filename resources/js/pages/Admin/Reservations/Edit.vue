@@ -68,9 +68,11 @@ function submit() {
                 <div class="rounded-md border p-4">
                     <div class="text-sm text-muted-foreground">Client</div>
                     <div class="font-medium">
-                        {{ reservation.user?.name }} ({{
-                            reservation.user?.email
-                        }})
+                        {{ reservation.guest_name || (reservation.user ? reservation.user.name : '—') }} 
+                        ({{ reservation.guest_email || (reservation.user ? reservation.user.email : '—') }})
+                        <div v-if="reservation.guest_phone" class="text-xs text-muted-foreground">
+                            Phone: {{ reservation.guest_phone }}
+                        </div>
                     </div>
                 </div>
                 <div class="rounded-md border p-4">
@@ -149,7 +151,7 @@ function submit() {
                         <Input
                             id="pickup_location"
                             v-model="form.pickup_location"
-                            placeholder="Main Office"
+                            placeholder=""
                         />
                         <InputError
                             :message="form.errors.pickup_location"
@@ -163,7 +165,7 @@ function submit() {
                         <Input
                             id="return_location"
                             v-model="form.return_location"
-                            placeholder="Main Office"
+                            placeholder=""
                         />
                         <InputError
                             :message="form.errors.return_location"
@@ -217,7 +219,7 @@ function submit() {
                             v-model="form.notes"
                             rows="4"
                             class="w-full rounded-md border border-input bg-transparent px-3 py-2"
-                            placeholder="Internal notes..."
+                            placeholder=""
                         ></textarea>
                         <InputError :message="form.errors.notes" class="mt-1" />
                     </div>
@@ -235,7 +237,7 @@ function submit() {
                             v-model="form.cancellation_reason"
                             rows="3"
                             class="w-full rounded-md border border-input bg-transparent px-3 py-2"
-                            placeholder="Why was this reservation cancelled?"
+                            placeholder=""
                         ></textarea>
                         <InputError
                             :message="form.errors.cancellation_reason"

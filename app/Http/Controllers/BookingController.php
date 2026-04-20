@@ -28,23 +28,26 @@ class BookingController extends Controller
             return redirect()->route('fleet')->with('error', 'This car is not available for booking.');
         }
 
-        // check if user is authenticated
-        if (!Auth::check()) {
-            return redirect()->route('login')->with('error', 'You must be logged in to book a car.');
-        }
+        // check if user is authenticated - if not, guest details will be required
+        $isGuest = !Auth::check();
 
-        // check if the reservation already exist
-        if (Reservation::where('car_id', $car->id)->where('user_id', Auth::id())->exists()) {
+        // check if the reservation already exist (only for authenticated users)
+        if (Auth::check() && Reservation::where('car_id', $car->id)->where('user_id', Auth::id())->exists()) {
             return redirect()->route('fleet')->with('error', 'You have already booked this car.');
         }
 
         // form validation
-        $request->validate([
+        $rules = [
             'start_date'       => 'required|date',
             'end_date'         => 'required|date|after_or_equal:start_date',
             'pickup_location'  => 'required|string|max:255',
             'return_location'  => 'required|string|max:255',
-        ]);
+            'guest_name'       => 'required|string|max:255',
+            'guest_email'      => 'nullable|email|max:255',
+            'guest_phone'      => 'required|string|max:20',
+        ];
+
+        $request->validate($rules);
 
         // convert dates to Carbon
         $startDate = Carbon::parse($request->start_date);
@@ -67,6 +70,9 @@ class BookingController extends Controller
         $reservation = Reservation::create([
             'car_id'          => $car->id,
             'user_id'         => Auth::id(),
+            'guest_name'      => $request->guest_name,
+            'guest_email'     => $request->guest_email,
+            'guest_phone'     => $request->guest_phone,
             'start_date'      => $startDate,
             'end_date'        => $endDate,
             'pickup_location' => $request->pickup_location,
@@ -90,7 +96,7 @@ class BookingController extends Controller
     public function confirmation(Reservation $reservation)
     {
         // Make sure user can only see their own reservations
-        if ($reservation->user_id !== Auth::user()->id) {
+        if ($reservation->user_id && (!Auth::check() || $reservation->user_id !== Auth::id())) {
             return redirect()->route('fleet');
         }
 

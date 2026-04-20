@@ -275,7 +275,7 @@ onMounted(() => {
         <div class="space-y-6 px-8 py-4">
             <!-- Header -->
             <div class="flex items-center justify-between">
-                <h2 class="text-2xl font-bold text-white">
+                <h2 class="text-2xl font-bold text-foreground">
                     Reports & Analytics
                 </h2>
 
@@ -283,7 +283,7 @@ onMounted(() => {
                 <div class="flex items-center space-x-2">
                     <label
                         for="period"
-                        class="text-sm font-medium text-white-500"
+                        class="text-sm font-medium text-muted-foreground"
                     >
                         Period:
                     </label>
@@ -291,7 +291,7 @@ onMounted(() => {
                         id="period"
                         v-model="selectedPeriod"
                         @change="handlePeriodChange"
-                        class="rounded-md border-gray-300  focus:border-indigo-500 text-white bg-black focus:ring-indigo-500 sm:text-sm"
+                        class="rounded-md border border-border focus:border-primary bg-background text-foreground focus:ring-primary sm:text-sm"
                     >
                         <option
                             v-for="option in periodOptions"
@@ -307,7 +307,7 @@ onMounted(() => {
             <!-- High-level KPIs -->
             <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
                 <!-- Total Revenue -->
-                <div class="overflow-hidden rounded-lg bg-white border border-gray-200 shadow">
+                <div class="overflow-hidden rounded-lg bg-background border border-border shadow-sm">
                     <div class="p-5">
                         <div class="flex items-center">
                             <div class="flex-shrink-0">
@@ -332,12 +332,12 @@ onMounted(() => {
                             <div class="ml-5 w-0 flex-1">
                                 <dl>
                                     <dt
-                                        class="truncate text-sm font-medium text-gray-500"
+                                        class="truncate text-sm font-medium text-muted-foreground"
                                     >
                                         {{ kpis.totalRevenue.label }}
                                     </dt>
                                     <dd
-                                        class="text-lg font-semibold text-gray-900"
+                                        class="text-lg font-semibold text-foreground"
                                     >
                                         {{ kpis.totalRevenue.formatted }}
                                     </dd>
@@ -348,7 +348,7 @@ onMounted(() => {
                 </div>
 
                 <!-- Platform Visits -->
-                <div class="overflow-hidden rounded-lg bg-white border border-gray-200 shadow">
+                <div class="overflow-hidden rounded-lg bg-background border border-border shadow-sm">
                     <div class="p-5">
                         <div class="flex items-center">
                             <div class="flex-shrink-0">
@@ -379,12 +379,12 @@ onMounted(() => {
                             <div class="ml-5 w-0 flex-1">
                                 <dl>
                                     <dt
-                                        class="truncate text-sm font-medium text-gray-500"
+                                        class="truncate text-sm font-medium text-muted-foreground"
                                     >
                                         {{ kpis.platformVisits.label }}
                                     </dt>
                                     <dd
-                                        class="text-lg font-semibold text-gray-900"
+                                        class="text-lg font-semibold text-foreground"
                                     >
                                         {{ kpis.platformVisits.formatted }}
                                     </dd>
@@ -395,7 +395,7 @@ onMounted(() => {
                 </div>
 
                 <!-- Active Reservations -->
-                <div class="overflow-hidden rounded-lg bg-white border border-gray-200 shadow">
+                <div class="overflow-hidden rounded-lg bg-background border border-border shadow-sm">
                     <div class="p-5">
                         <div class="flex items-center">
                             <div class="flex-shrink-0">
@@ -420,12 +420,12 @@ onMounted(() => {
                             <div class="ml-5 w-0 flex-1">
                                 <dl>
                                     <dt
-                                        class="truncate text-sm font-medium text-gray-500"
+                                        class="truncate text-sm font-medium text-muted-foreground"
                                     >
                                         {{ kpis.activeReservations.label }}
                                     </dt>
                                     <dd
-                                        class="text-lg font-semibold text-gray-900"
+                                        class="text-lg font-semibold text-foreground"
                                     >
                                         {{ kpis.activeReservations.formatted }}
                                     </dd>
@@ -436,7 +436,7 @@ onMounted(() => {
                 </div>
 
                 <!-- New Clients -->
-                <div class="overflow-hidden rounded-lg bg-white border border-gray-200 shadow">
+                <div class="overflow-hidden rounded-lg bg-background border border-border shadow-sm">
                     <div class="p-5">
                         <div class="flex items-center">
                             <div class="flex-shrink-0">
@@ -461,12 +461,12 @@ onMounted(() => {
                             <div class="ml-5 w-0 flex-1">
                                 <dl>
                                     <dt
-                                        class="truncate text-sm font-medium text-gray-500"
+                                        class="truncate text-sm font-medium text-muted-foreground"
                                     >
                                         {{ kpis.newClients.label }}
                                     </dt>
                                     <dd
-                                        class="text-lg font-semibold text-gray-900"
+                                        class="text-lg font-semibold text-foreground"
                                     >
                                         {{ kpis.newClients.formatted }}
                                     </dd>
@@ -480,7 +480,7 @@ onMounted(() => {
             <!-- Cars State -->
             <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
                 <!-- Total Cars -->
-                <div class="overflow-hidden rounded-lg bg-white border border-gray-200 shadow">
+                <div class="overflow-hidden rounded-lg bg-background border border-border shadow-sm">
                     <div class="p-5">
                         <div class="flex items-center">
                             <div class="flex-shrink-0">
@@ -509,12 +509,12 @@ onMounted(() => {
                             <div class="ml-5 w-0 flex-1">
                                 <dl>
                                     <dt
-                                        class="truncate text-sm font-medium text-gray-500"
+                                        class="truncate text-sm font-medium text-muted-foreground"
                                     >
                                         {{ carsState.totalCars.label }}
                                     </dt>
                                     <dd
-                                        class="text-lg font-semibold text-gray-900"
+                                        class="text-lg font-semibold text-foreground"
                                     >
                                         {{ carsState.totalCars.formatted }}
                                     </dd>
@@ -525,7 +525,7 @@ onMounted(() => {
                 </div>
 
                 <!-- Available Cars -->
-                <div class="overflow-hidden rounded-lg bg-white border border-gray-200 shadow">
+                <div class="overflow-hidden rounded-lg bg-background border border-border shadow-sm">
                     <div class="p-5">
                         <div class="flex items-center">
                             <div class="flex-shrink-0">
@@ -554,12 +554,12 @@ onMounted(() => {
                             <div class="ml-5 w-0 flex-1">
                                 <dl>
                                     <dt
-                                        class="truncate text-sm font-medium text-gray-500"
+                                        class="truncate text-sm font-medium text-muted-foreground"
                                     >
                                         {{ carsState.availableCars.label }}
                                     </dt>
                                     <dd
-                                        class="text-lg font-semibold text-gray-900"
+                                        class="text-lg font-semibold text-foreground"
                                     >
                                         {{ carsState.availableCars.formatted }}
                                     </dd>
@@ -570,7 +570,7 @@ onMounted(() => {
                 </div>
 
                 <!-- Rented Cars -->
-                <div class="overflow-hidden rounded-lg bg-white border border-gray-200 shadow">
+                <div class="overflow-hidden rounded-lg bg-background border border-border shadow-sm">
                     <div class="p-5">
                         <div class="flex items-center">
                             <div class="flex-shrink-0">
@@ -599,12 +599,12 @@ onMounted(() => {
                             <div class="ml-5 w-0 flex-1">
                                 <dl>
                                     <dt
-                                        class="truncate text-sm font-medium text-gray-500"
+                                        class="truncate text-sm font-medium text-muted-foreground"
                                     >
                                         {{ carsState.rentedCars.label }}
                                     </dt>
                                     <dd
-                                        class="text-lg font-semibold text-gray-900"
+                                        class="text-lg font-semibold text-foreground"
                                     >
                                         {{ carsState.rentedCars.formatted }}
                                     </dd>
@@ -615,7 +615,7 @@ onMounted(() => {
                 </div>
 
                 <!-- Unavailable Cars -->
-                <div class="overflow-hidden rounded-lg bg-white border border-gray-200 shadow">
+                <div class="overflow-hidden rounded-lg bg-background border border-border shadow-sm">
                     <div class="p-5">
                         <div class="flex items-center">
                             <div class="flex-shrink-0">
@@ -644,12 +644,12 @@ onMounted(() => {
                             <div class="ml-5 w-0 flex-1">
                                 <dl>
                                     <dt
-                                        class="truncate text-sm font-medium text-gray-500"
+                                        class="truncate text-sm font-medium text-muted-foreground"
                                     >
                                         {{ carsState.unavailableCars.label }}
                                     </dt>
                                     <dd
-                                        class="text-lg font-semibold text-gray-900"
+                                        class="text-lg font-semibold text-foreground"
                                     >
                                         {{
                                             carsState.unavailableCars.formatted
@@ -663,13 +663,13 @@ onMounted(() => {
             </div>
 
             <!-- Reservations Chart -->
-            <div class="rounded-lg bg-white border border-gray-200 shadow">
+            <div class="rounded-lg bg-background border border-border shadow-sm">
                 <div class="p-6">
                     <div class="mb-4 flex items-center justify-between">
-                        <h3 class="text-lg font-semibold text-gray-900">
+                        <h3 class="text-lg font-semibold text-foreground">
                             Daily Reservations Created
                         </h3>
-                        <div class="text-sm text-gray-500">
+                        <div class="text-sm text-muted-foreground">
                             {{ chartData.dateRange.start }} to
                             {{ chartData.dateRange.end }}
                         </div>
@@ -683,23 +683,23 @@ onMounted(() => {
             </div>
 
             <!-- Cars Performance Table -->
-            <div class="rounded-lg bg-white border border-gray-200 shadow">
+            <div class="rounded-lg bg-background border border-border shadow-sm">
                 <div class="p-6">
                     <div class="mb-4 flex items-center justify-between">
-                        <h3 class="text-lg font-semibold text-gray-900">
+                        <h3 class="text-lg font-semibold text-foreground">
                             Top 10 Cars Performance
                         </h3>
-                        <div class="text-sm text-gray-500">
+                        <div class="text-sm text-muted-foreground">
                             Click column headers to sort
                         </div>
                     </div>
                     <div class="overflow-x-auto">
-                        <table class="min-w-full divide-y divide-gray-200">
-                            <thead class="bg-gray-50 ">
+                        <table class="min-w-full divide-y divide-border">
+                            <thead class="bg-muted/50 ">
                                 <tr>
                                     <th
                                         scope="col"
-                                        class="cursor-pointer px-6 py-3 text-left text-xs font-medium tracking-wider text-gray-500 uppercase hover:bg-gray-100 border border-gray-200"
+                                        class="cursor-pointer px-6 py-3 text-left text-xs font-medium tracking-wider text-muted-foreground uppercase hover:bg-muted/80 border border-border"
                                         @click="sortTable('car_name')"
                                     >
                                         <div
@@ -729,7 +729,7 @@ onMounted(() => {
                                     </th>
                                     <th
                                         scope="col"
-                                        class="cursor-pointer px-6 py-3 text-left text-xs font-medium tracking-wider text-gray-500 uppercase hover:bg-gray-100 border border-gray-200"
+                                        class="cursor-pointer px-6 py-3 text-left text-xs font-medium tracking-wider text-muted-foreground uppercase hover:bg-muted/80 border border-border"
                                         @click="sortTable('status')"
                                     >
                                         <div

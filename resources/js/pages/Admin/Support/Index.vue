@@ -130,14 +130,14 @@ function goToTicket(id: number) {
                         @change="doSearch"
                     >
                     <div 
-                        class="flex flex-col items-center justify-center text-blackp-3 rounded-md cursor-pointer transition-colors"
+                        class="flex flex-col items-center justify-center p-3 rounded-md cursor-pointer transition-colors"
                         :class="{
-                            'bg-white shadow-sm border border-gray-200': ticketType === 'customer',
-                            'hover:bg-gray-100': ticketType !== 'customer'
+                            'bg-background shadow-sm border border-border': ticketType === 'customer',
+                            'hover:bg-muted/50': ticketType !== 'customer'
                         }"
                     >
-                        <span class="font-medium text-black">Customer Tickets</span>
-                        <span class="text-sm text-black">
+                        <span class="font-medium text-foreground">Customer Tickets</span>
+                        <span class="text-sm text-muted-foreground">
                             {{ getTotalCount('customer') }} total
                         </span>
                     </div>
@@ -151,14 +151,14 @@ function goToTicket(id: number) {
                         @change="doSearch"
                     >
                     <div 
-                        class="flex flex-col items-center justify-center text-blackp-3 rounded-md cursor-pointer transition-colors"
+                        class="flex flex-col items-center justify-center p-3 rounded-md cursor-pointer transition-colors"
                         :class="{
-                            'bg-white shadow-sm border border-gray-200': ticketType === 'guest',
-                            'hover:bg-gray-100': ticketType !== 'guest'
+                            'bg-background shadow-sm border border-border': ticketType === 'guest',
+                            'hover:bg-muted/50': ticketType !== 'guest'
                         }"
                     >
-                        <span class="font-medium text-black">Guest Tickets</span>
-                        <span class="text-sm text-black">   
+                        <span class="font-medium text-foreground">Guest Tickets</span>
+                        <span class="text-sm text-muted-foreground">   
                             {{ getTotalCount('guest') }} total
                         </span>
                     </div>
@@ -211,49 +211,49 @@ function goToTicket(id: number) {
             </div>
 
             <!-- Tickets Table -->
-            <div class="overflow-x-auto rounded-lg bg-white border border-gray-200 shadow">
-                <table class="min-w-full divide-y divide-gray-200">
-                    <thead class="bg-gray-50">
+            <div class="overflow-x-auto rounded-lg bg-background border border-border shadow-sm">
+                <table class="min-w-full divide-y divide-border">
+                    <thead class="bg-muted/50">
                         <tr>
-                            <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            <th class="px-4 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
                                 Ticket #
                             </th>
-                            <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            <th class="px-4 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
                                 {{ ticketType === 'customer' ? 'Customer' : 'Guest' }}
                             </th>
-                            <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            <th class="px-4 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
                                 Subject
                             </th>
-                            <th v-if="ticketType === 'customer'" class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            <th v-if="ticketType === 'customer'" class="px-4 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
                                 Status
                             </th>
-                            <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            <th class="px-4 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
                                 Created
                             </th>
                             <th class="px-4 py-3"></th>
                         </tr>
                     </thead>
-                    <tbody class="divide-y divide-gray-200 bg-white text-black">
+                    <tbody class="divide-y divide-border bg-background text-foreground">
                         <tr 
                             v-for="ticket in props.tickets.data" 
                             :key="ticket.id"
-                            class="hover:bg-gray-100 cursor-pointer"
+                            class="hover:bg-muted/50 cursor-pointer"
                             @click="goToTicket(ticket.id)"
                         >
-                            <td class="px-4 py-3 text-sm text-gray-900">
+                            <td class="px-4 py-3 text-sm text-foreground">
                                 #{{ ticket.id }}
                             </td>
                             <td class="px-4 py-3">
-                                <div class="font-medium text-gray-900">
+                                <div class="font-medium text-foreground">
                                     {{ ticketType === 'customer' ? ticket.user?.name : ticket.guest_name }}
                                 </div>
-                                <div class="text-xs text-gray-500">
+                                <div class="text-xs text-muted-foreground">
                                     {{ ticketType === 'customer' ? ticket.user?.email : ticket.guest_email }}
                                 </div>
                             </td>
-                            <td class="px-4 py-3 text-sm text-gray-900">
+                            <td class="px-4 py-3 text-sm text-foreground">
                                 <div class="font-medium">{{ ticket.subject }}</div>
-                                <div class="text-xs text-gray-500 line-clamp-1">
+                                <div class="text-xs text-muted-foreground line-clamp-1">
                                     {{ ticket.message }}
                                 </div>
                             </td>
@@ -272,7 +272,7 @@ function goToTicket(id: number) {
                                     {{ statuses[ticket.status]?.label || ticket.status }}
                                 </span>
                             </td>
-                            <td class="px-4 py-3 text-sm text-gray-500 whitespace-nowrap">
+                            <td class="px-4 py-3 text-sm text-muted-foreground whitespace-nowrap">
                                 {{ formatDate(ticket.created_at) }}
                             </td>
                         </tr>
@@ -292,10 +292,10 @@ function goToTicket(id: number) {
                         <a
                             v-if="link.url"
                             :href="link.url"
-                            class="px-3 py-1 rounded-md text-sm"
+                            class="px-3 py-1 rounded-md text-sm transition-all"
                             :class="{
-                                'bg-black text-white': link.active,
-                                'bg-gray-100 text-gray-700': !link.active,
+                                'bg-primary text-primary-foreground font-bold': link.active,
+                                'bg-muted text-muted-foreground border border-border hover:bg-muted/80': !link.active,
                             }"
                             v-html="link.label"
                         ></a>

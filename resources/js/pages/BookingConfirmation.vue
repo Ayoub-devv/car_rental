@@ -28,7 +28,10 @@ interface Reservation {
     user: {
         name: string;
         email: string;
-    };
+    } | null;
+    guest_name?: string;
+    guest_email?: string;
+    guest_phone?: string;
 }
 
 interface PageProps {
@@ -41,7 +44,7 @@ const reservation = $page.props.reservation;
 
 <template>
     <HomeLayout>
-        <div class="min-h-screen bg-zinc-950 border border-white/10/60 backdrop-blur-xl py-12">
+        <div class="min-h-screen bg-background border border-border backdrop-blur-xl py-12">
             <div class="mx-auto max-w-7xl px-6">
                 <!-- Clean success header with minimal styling -->
                 <div class="mb-12 text-center">
@@ -62,10 +65,10 @@ const reservation = $page.props.reservation;
                             ></path>
                         </svg>
                     </div>
-                    <h1 class="mb-2 text-3xl font-bold text-white">
+                    <h1 class="mb-2 text-3xl font-bold text-foreground">
                         Booking Confirmed
                     </h1>
-                    <p class="text-zinc-200">
+                    <p class="text-muted-foreground">
                         Reservation #{{ reservation.reservation_number }}
                     </p>
                 </div>
@@ -75,9 +78,9 @@ const reservation = $page.props.reservation;
                     <!-- Main Details -->
                     <div class="space-y-8 lg:col-span-2">
                         <!-- Car Information -->
-                        <div class="rounded-lg border border-white/10 p-6">
+                        <div class="rounded-lg border border-border p-6">
                             <h2
-                                class="mb-6 text-xl font-semibold text-white"
+                                class="mb-6 text-xl font-semibold text-foreground"
                             >
                                 Vehicle Details
                             </h2>
@@ -89,15 +92,15 @@ const reservation = $page.props.reservation;
                                 />
                                 <div class="space-y-2">
                                     <h3
-                                        class="text-lg font-medium text-white"
+                                        class="text-lg font-medium text-foreground"
                                     >
                                         {{ reservation.car.make }}
                                         {{ reservation.car.model }} - {{ reservation.car.year }}
                                     </h3>
-                                    <p class="bg-zinc-950 border border-white/10 px-2 rounded w-fit text-white">
+                                    <p class="bg-zinc-950 border border-border px-2 rounded w-fit text-foreground">
                                         {{ reservation.car.fuel_type }}
                                     </p>
-                                    <p class="text-zinc-200">
+                                    <p class="text-muted-foreground">
                                         {{ reservation.car.description }}
                                     </p>
                                 </div>
@@ -105,33 +108,33 @@ const reservation = $page.props.reservation;
                         </div>
 
                         <!-- Rental Details -->
-                        <div class="rounded-lg border border-white/10 p-6">
+                        <div class="rounded-lg border border-border p-6">
                             <h2
-                                class="mb-6 text-xl font-semibold text-white"
+                                class="mb-6 text-xl font-semibold text-foreground"
                             >
                                 Rental Information
                             </h2>
                             <div class="grid gap-8 md:grid-cols-2">
                                 <div>
-                                    <h3 class="mb-4 font-medium text-white">
+                                    <h3 class="mb-4 font-medium text-foreground">
                                         Dates
                                     </h3>
                                     <div class="space-y-3">
-                                        <div class="flex justify-between text-white">
-                                            <span class="text-zinc-200"
+                                        <div class="flex justify-between text-foreground">
+                                            <span class="text-muted-foreground"
                                                 >Pickup:</span
                                             >
-                                            <span class=" text-white">{{
+                                            <span class=" text-foreground">{{
                                                 new Date(
                                                     reservation.start_date,
                                                 ).toLocaleDateString()
                                             }}</span>
                                         </div>
-                                        <div class="flex justify-between text-white">
-                                            <span class="text-zinc-200"
+                                        <div class="flex justify-between text-foreground">
+                                            <span class="text-muted-foreground"
                                                 >Return:</span
                                             >
-                                            <span class=" text-white">{{
+                                            <span class=" text-foreground">{{
                                                 new Date(
                                                     reservation.end_date,
                                                 ).toLocaleDateString()
@@ -141,23 +144,23 @@ const reservation = $page.props.reservation;
                                 </div>
 
                                 <div>
-                                    <h3 class="mb-4 font-medium text-white">
+                                    <h3 class="mb-4 font-medium text-foreground">
                                         Locations
                                     </h3>
                                     <div class="space-y-3">
-                                        <div class="flex justify-between text-white">
-                                            <span class="text-zinc-200"
+                                        <div class="flex justify-between text-foreground">
+                                            <span class="text-muted-foreground"
                                                 >Pickup:</span
                                             >
-                                            <span class="text-white">{{
+                                            <span class="text-foreground">{{
                                                 reservation.pickup_location
                                             }}</span>
                                         </div>
-                                        <div class="flex justify-between text-white">
-                                            <span class="text-zinc-200"
+                                        <div class="flex justify-between text-foreground">
+                                            <span class="text-muted-foreground"
                                                 >Return:</span
                                             >
-                                            <span class="text-white">{{
+                                            <span class="text-foreground">{{
                                                 reservation.return_location
                                             }}</span>
                                         </div>
@@ -167,25 +170,33 @@ const reservation = $page.props.reservation;
                         </div>              
 
                         <!-- Contact Information -->
-                        <div class="rounded-lg border border-white/10 p-6">
+                        <div class="rounded-lg border border-border p-6">
                             <h2
-                                class="mb-6 text-xl font-semibold text-white"
+                                class="mb-6 text-xl font-semibold text-foreground"
                             >
                                 Contact Details
                             </h2>
-                            <div class="grid gap-8 md:grid-cols-2 text-white">
-                                    <div class="flex gap-2 text-white           ">
-                                        <span class="text-zinc-200">Name:</span>
-                                        <span class="font-medium text-white">{{
-                                            reservation.user.name
+                            <div class="grid gap-8 md:grid-cols-2 text-foreground">
+                                    <div class="flex gap-2 text-foreground           ">
+                                        <span class="text-muted-foreground">Name:</span>
+                                        <span class="font-medium text-foreground">{{
+                                            reservation.guest_name || (reservation.user ? reservation.user.name : '—')
                                         }}</span>
                                     </div>
-                                    <div class="flex gap-2 text-white">
-                                        <span class="text-zinc-200">
+                                    <div class="flex gap-2 text-foreground">
+                                        <span class="text-muted-foreground">
                                             Email:
                                         </span>
-                                        <span class="font-medium text-white">{{
-                                            reservation.user.email
+                                        <span class="font-medium text-foreground">{{
+                                            reservation.guest_email || (reservation.user ? reservation.user.email : '—')
+                                        }}</span>
+                                    </div>
+                                    <div v-if="reservation.guest_phone" class="flex gap-2 text-foreground">
+                                        <span class="text-muted-foreground">
+                                            Phone:
+                                        </span>
+                                        <span class="font-medium text-foreground">{{
+                                            reservation.guest_phone
                                         }}</span>
                                     </div>
                             </div>
@@ -195,15 +206,15 @@ const reservation = $page.props.reservation;
                     <!-- Clean sidebar with price summary and next steps -->
                     <div class="space-y-6">
                         <!-- Price Summary -->
-                        <div class="rounded-lg border border-white/10 p-6">
+                        <div class="rounded-lg border border-border p-6">
                             <h2
-                                class="mb-4 text-xl font-semibold text-white"
+                                class="mb-4 text-xl font-semibold text-foreground"
                             >
                                 Summary
                             </h2>
                             <div class="space-y-3">
                                 <div class="flex justify-between">
-                                    <span class="text-zinc-200">Status:</span>
+                                    <span class="text-muted-foreground">Status:</span>
                                     <span
                                         class="rounded-full bg-yellow-100 px-3 py-1 text-sm text-yellow-800 capitalize"
                                     >
@@ -215,17 +226,17 @@ const reservation = $page.props.reservation;
                                         class="flex items-center justify-between"
                                     >
                                         <span
-                                            class="text-lg font-semibold text-white"
+                                            class="text-lg font-semibold text-foreground"
                                             >Total:</span
                                         >
                                         <span
                                             class="text-2xl font-bold text-red-500"
                                         >
-                                            ${{
+                                            {{
                                                 parseFloat(
                                                     reservation.total_amount,
                                                 ).toFixed(2)
-                                            }}
+                                            }} DH
                                         </span>
                                     </div>
                                 </div>
@@ -233,16 +244,16 @@ const reservation = $page.props.reservation;
                         </div>
 
                         <!-- Next Steps -->
-                        <div class="rounded-lg border border-white/10 p-6">
+                        <div class="rounded-lg border border-border p-6">
                             <h2
-                                class="mb-4 text-xl font-semibold text-white"
+                                class="mb-4 text-xl font-semibold text-foreground"
                             >
                                 Next Steps
                             </h2>
-                            <div class="space-y-4 text-sm text-zinc-200">
+                            <div class="space-y-4 text-sm text-muted-foreground">
                                 <div class="flex items-start space-x-3">
                                     <span
-                                        class="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-zinc-950 border border-white/10 text-xs font-medium"
+                                        class="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-zinc-950 border border-border text-xs font-medium"
                                         >1</span
                                     >
                                     <span
@@ -252,7 +263,7 @@ const reservation = $page.props.reservation;
                                 </div>
                                 <div class="flex items-start space-x-3">
                                     <span
-                                        class="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-zinc-950 border border-white/10 text-xs font-medium"
+                                        class="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-zinc-950 border border-border text-xs font-medium"
                                         >2</span
                                     >
                                     <span
@@ -262,7 +273,7 @@ const reservation = $page.props.reservation;
                                 </div>
                                 <div class="flex items-start space-x-3">
                                     <span
-                                        class="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-zinc-950 border border-white/10 text-xs font-medium"
+                                        class="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-zinc-950 border border-border text-xs font-medium"
                                         >3</span
                                     >
                                     <span
@@ -276,14 +287,15 @@ const reservation = $page.props.reservation;
                         <!-- Action Buttons -->
                         <div class="space-y-3">
                             <a
+                                v-if="$page.props.auth.user"
                                 :href="index.url()"
-                                class="block w-full rounded-lg bg-black px-6 py-3 text-center font-medium text-white transition-colors duration-200 hover:bg-gray-800"
+                                class="block w-full rounded-lg bg-red-600 px-6 py-3 text-center font-medium text-white transition-colors duration-200 hover:bg-red-700"
                             >
                                 View My Bookings
                             </a>
                             <a
                                 :href="fleet.url()"
-                                class="block w-full rounded-lg border border-zinc-700 bg-zinc-950 border border-white/10/60 backdrop-blur-xl px-6 py-3 text-center font-medium text-white transition-colors duration-200 hover:bg-black"
+                                class="block w-full rounded-lg border border-border bg-background px-6 py-3 text-center font-medium text-foreground transition-all duration-200 hover:bg-accent"
                             >
                                 Browse More Cars
                             </a>

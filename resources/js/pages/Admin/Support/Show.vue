@@ -118,10 +118,10 @@ function closeTicket(){
     <AdminLayout>
         <div class="p-4">
             <!-- Ticket Header -->
-            <div class="mb-6 w-full rounded-lg bg-white border border-gray-200 p-6 shadow">
+            <div class="mb-6 w-full rounded-lg bg-background border border-border p-6 shadow-sm">
                 <div class="mb-4 flex items-start justify-between">
                     <div>
-                        <h1 class="text-2xl font-bold text-gray-900">
+                        <h1 class="text-2xl font-bold text-foreground">
                             {{ ticket.subject }}
                         </h1>
                         <div class="mt-2 flex items-center">
@@ -139,7 +139,7 @@ function closeTicket(){
                                     ] || ticket.status
                                 }}
                             </span>
-                            <span class="ml-2 text-sm text-gray-500">
+                            <span class="ml-2 text-sm text-muted-foreground">
                                 #{{ ticket.id }} •
                                 {{ formatDate(ticket.created_at) }}
                             </span>
@@ -168,7 +168,7 @@ function closeTicket(){
                             <p class="text-sm font-medium text-gray-500">
                                 Name
                             </p>
-                            <p class="mt-1 text-sm text-gray-900">
+                            <p class="mt-1 text-sm text-foreground">
                                 {{ ticket.guest_name }}
                             </p>
                         </div>
@@ -176,7 +176,7 @@ function closeTicket(){
                             <p class="text-sm font-medium text-gray-500">
                                 Email
                             </p>
-                            <p class="mt-1 text-sm text-gray-900">
+                            <p class="mt-1 text-sm text-foreground">
                                 {{ ticket.guest_email }}
                             </p>
                         </div>
@@ -184,9 +184,9 @@ function closeTicket(){
                             <p class="text-sm font-medium text-gray-500">
                                 Message
                             </p>
-                            <div class="mt-1 rounded-md bg-gray-50 p-3">
+                            <div class="mt-1 rounded-md bg-muted p-3">
                                 <p
-                                    class="text-sm whitespace-pre-line text-gray-700"
+                                    class="text-sm whitespace-pre-line text-foreground"
                                 >
                                     {{ ticket.messages[0].message }}
                                 </p>
@@ -199,13 +199,13 @@ function closeTicket(){
             <!-- Chat Interface (for client tickets) -->
             <div
                 v-if="!isGuest"
-                class="h-2/3 space-y-4 overflow-scroll p-2 border-2 rounded-md"
+                class="h-2/3 space-y-4 overflow-scroll p-2 border-2 border-border rounded-md bg-muted/30"
             >
                 <!-- Messages -->
                 <div class="space-y-4">
                     <div
                         v-if="!ticket.messages || ticket.messages.length === 0"
-                        class="rounded-md border border-dashed border-gray-300 p-6 text-center text-sm text-gray-500"
+                        class="rounded-md border border-dashed border-border p-6 text-center text-sm text-muted-foreground"
                     >
                         No messages yet. Start the conversation below.
                     </div>
@@ -221,8 +221,8 @@ function closeTicket(){
                             :class="[
                                 'max-w-3xl rounded-lg px-4 py-2',
                                 message.is_admin
-                                    ? 'rounded-tr-none bg-blue-500 text-white'
-                                    : 'rounded-tl-none bg-gray-100 text-gray-800',
+                                    ? 'rounded-tr-none bg-primary text-primary-foreground'
+                                    : 'rounded-tl-none bg-muted text-foreground',
                             ]"
                         >
                             <p class="whitespace-pre-line">
@@ -253,7 +253,7 @@ function closeTicket(){
                             id="message"
                             v-model="form.message"
                             rows="3"
-                            class="w-full rounded-lg border-1 border-zinc-700 p-2"
+                            class="w-full rounded-lg border border-border bg-background text-foreground p-2 focus:ring-2 focus:ring-primary focus:outline-none"
                             placeholder="Type your reply here... (Ctrl+Enter to send)"
                             required
                             aria-label="Type your reply here"

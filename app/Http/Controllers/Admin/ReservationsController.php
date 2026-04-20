@@ -39,6 +39,8 @@ class ReservationsController extends Controller
             ->when($request->string('search')->toString(), function ($query, $search) {
                 $query->where(function ($q) use ($search) {
                     $q->where('reservation_number', 'like', "%{$search}%")
+                        ->orWhere('guest_name', 'like', "%{$search}%")
+                        ->orWhere('guest_email', 'like', "%{$search}%")
                         ->orWhereHas('user', function ($uq) use ($search) {
                             $uq->where('name', 'like', "%{$search}%")
                                 ->orWhere('email', 'like', "%{$search}%");

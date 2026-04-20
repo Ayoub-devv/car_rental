@@ -79,7 +79,7 @@ index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     index.form = indexForm
 /**
 * @see \App\Http\Controllers\Admin\ReservationsController::show
- * @see app/Http/Controllers/Admin/ReservationsController.php:86
+ * @see app/Http/Controllers/Admin/ReservationsController.php:88
  * @route '/admin/reservations/{reservation}'
  */
 export const show = (args: { reservation: number | { id: number } } | [reservation: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -94,7 +94,7 @@ show.definition = {
 
 /**
 * @see \App\Http\Controllers\Admin\ReservationsController::show
- * @see app/Http/Controllers/Admin/ReservationsController.php:86
+ * @see app/Http/Controllers/Admin/ReservationsController.php:88
  * @route '/admin/reservations/{reservation}'
  */
 show.url = (args: { reservation: number | { id: number } } | [reservation: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
@@ -127,7 +127,7 @@ show.url = (args: { reservation: number | { id: number } } | [reservation: numbe
 
 /**
 * @see \App\Http\Controllers\Admin\ReservationsController::show
- * @see app/Http/Controllers/Admin/ReservationsController.php:86
+ * @see app/Http/Controllers/Admin/ReservationsController.php:88
  * @route '/admin/reservations/{reservation}'
  */
 show.get = (args: { reservation: number | { id: number } } | [reservation: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -136,7 +136,7 @@ show.get = (args: { reservation: number | { id: number } } | [reservation: numbe
 })
 /**
 * @see \App\Http\Controllers\Admin\ReservationsController::show
- * @see app/Http/Controllers/Admin/ReservationsController.php:86
+ * @see app/Http/Controllers/Admin/ReservationsController.php:88
  * @route '/admin/reservations/{reservation}'
  */
 show.head = (args: { reservation: number | { id: number } } | [reservation: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -146,7 +146,7 @@ show.head = (args: { reservation: number | { id: number } } | [reservation: numb
 
     /**
 * @see \App\Http\Controllers\Admin\ReservationsController::show
- * @see app/Http/Controllers/Admin/ReservationsController.php:86
+ * @see app/Http/Controllers/Admin/ReservationsController.php:88
  * @route '/admin/reservations/{reservation}'
  */
     const showForm = (args: { reservation: number | { id: number } } | [reservation: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -156,7 +156,7 @@ show.head = (args: { reservation: number | { id: number } } | [reservation: numb
 
             /**
 * @see \App\Http\Controllers\Admin\ReservationsController::show
- * @see app/Http/Controllers/Admin/ReservationsController.php:86
+ * @see app/Http/Controllers/Admin/ReservationsController.php:88
  * @route '/admin/reservations/{reservation}'
  */
         showForm.get = (args: { reservation: number | { id: number } } | [reservation: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -165,7 +165,7 @@ show.head = (args: { reservation: number | { id: number } } | [reservation: numb
         })
             /**
 * @see \App\Http\Controllers\Admin\ReservationsController::show
- * @see app/Http/Controllers/Admin/ReservationsController.php:86
+ * @see app/Http/Controllers/Admin/ReservationsController.php:88
  * @route '/admin/reservations/{reservation}'
  */
         showForm.head = (args: { reservation: number | { id: number } } | [reservation: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -181,7 +181,7 @@ show.head = (args: { reservation: number | { id: number } } | [reservation: numb
     show.form = showForm
 /**
 * @see \App\Http\Controllers\Admin\ReservationsController::edit
- * @see app/Http/Controllers/Admin/ReservationsController.php:100
+ * @see app/Http/Controllers/Admin/ReservationsController.php:102
  * @route '/admin/reservations/{reservation}/edit'
  */
 export const edit = (args: { reservation: number | { id: number } } | [reservation: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -196,7 +196,7 @@ edit.definition = {
 
 /**
 * @see \App\Http\Controllers\Admin\ReservationsController::edit
- * @see app/Http/Controllers/Admin/ReservationsController.php:100
+ * @see app/Http/Controllers/Admin/ReservationsController.php:102
  * @route '/admin/reservations/{reservation}/edit'
  */
 edit.url = (args: { reservation: number | { id: number } } | [reservation: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
@@ -229,7 +229,7 @@ edit.url = (args: { reservation: number | { id: number } } | [reservation: numbe
 
 /**
 * @see \App\Http\Controllers\Admin\ReservationsController::edit
- * @see app/Http/Controllers/Admin/ReservationsController.php:100
+ * @see app/Http/Controllers/Admin/ReservationsController.php:102
  * @route '/admin/reservations/{reservation}/edit'
  */
 edit.get = (args: { reservation: number | { id: number } } | [reservation: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -238,7 +238,7 @@ edit.get = (args: { reservation: number | { id: number } } | [reservation: numbe
 })
 /**
 * @see \App\Http\Controllers\Admin\ReservationsController::edit
- * @see app/Http/Controllers/Admin/ReservationsController.php:100
+ * @see app/Http/Controllers/Admin/ReservationsController.php:102
  * @route '/admin/reservations/{reservation}/edit'
  */
 edit.head = (args: { reservation: number | { id: number } } | [reservation: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -248,7 +248,7 @@ edit.head = (args: { reservation: number | { id: number } } | [reservation: numb
 
     /**
 * @see \App\Http\Controllers\Admin\ReservationsController::edit
- * @see app/Http/Controllers/Admin/ReservationsController.php:100
+ * @see app/Http/Controllers/Admin/ReservationsController.php:102
  * @route '/admin/reservations/{reservation}/edit'
  */
     const editForm = (args: { reservation: number | { id: number } } | [reservation: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -258,7 +258,7 @@ edit.head = (args: { reservation: number | { id: number } } | [reservation: numb
 
             /**
 * @see \App\Http\Controllers\Admin\ReservationsController::edit
- * @see app/Http/Controllers/Admin/ReservationsController.php:100
+ * @see app/Http/Controllers/Admin/ReservationsController.php:102
  * @route '/admin/reservations/{reservation}/edit'
  */
         editForm.get = (args: { reservation: number | { id: number } } | [reservation: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -267,7 +267,7 @@ edit.head = (args: { reservation: number | { id: number } } | [reservation: numb
         })
             /**
 * @see \App\Http\Controllers\Admin\ReservationsController::edit
- * @see app/Http/Controllers/Admin/ReservationsController.php:100
+ * @see app/Http/Controllers/Admin/ReservationsController.php:102
  * @route '/admin/reservations/{reservation}/edit'
  */
         editForm.head = (args: { reservation: number | { id: number } } | [reservation: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -283,7 +283,7 @@ edit.head = (args: { reservation: number | { id: number } } | [reservation: numb
     edit.form = editForm
 /**
 * @see \App\Http\Controllers\Admin\ReservationsController::update
- * @see app/Http/Controllers/Admin/ReservationsController.php:115
+ * @see app/Http/Controllers/Admin/ReservationsController.php:117
  * @route '/admin/reservations/{reservation}'
  */
 export const update = (args: { reservation: number | { id: number } } | [reservation: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
@@ -298,7 +298,7 @@ update.definition = {
 
 /**
 * @see \App\Http\Controllers\Admin\ReservationsController::update
- * @see app/Http/Controllers/Admin/ReservationsController.php:115
+ * @see app/Http/Controllers/Admin/ReservationsController.php:117
  * @route '/admin/reservations/{reservation}'
  */
 update.url = (args: { reservation: number | { id: number } } | [reservation: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
@@ -331,7 +331,7 @@ update.url = (args: { reservation: number | { id: number } } | [reservation: num
 
 /**
 * @see \App\Http\Controllers\Admin\ReservationsController::update
- * @see app/Http/Controllers/Admin/ReservationsController.php:115
+ * @see app/Http/Controllers/Admin/ReservationsController.php:117
  * @route '/admin/reservations/{reservation}'
  */
 update.put = (args: { reservation: number | { id: number } } | [reservation: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
@@ -340,7 +340,7 @@ update.put = (args: { reservation: number | { id: number } } | [reservation: num
 })
 /**
 * @see \App\Http\Controllers\Admin\ReservationsController::update
- * @see app/Http/Controllers/Admin/ReservationsController.php:115
+ * @see app/Http/Controllers/Admin/ReservationsController.php:117
  * @route '/admin/reservations/{reservation}'
  */
 update.patch = (args: { reservation: number | { id: number } } | [reservation: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
@@ -350,7 +350,7 @@ update.patch = (args: { reservation: number | { id: number } } | [reservation: n
 
     /**
 * @see \App\Http\Controllers\Admin\ReservationsController::update
- * @see app/Http/Controllers/Admin/ReservationsController.php:115
+ * @see app/Http/Controllers/Admin/ReservationsController.php:117
  * @route '/admin/reservations/{reservation}'
  */
     const updateForm = (args: { reservation: number | { id: number } } | [reservation: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -365,7 +365,7 @@ update.patch = (args: { reservation: number | { id: number } } | [reservation: n
 
             /**
 * @see \App\Http\Controllers\Admin\ReservationsController::update
- * @see app/Http/Controllers/Admin/ReservationsController.php:115
+ * @see app/Http/Controllers/Admin/ReservationsController.php:117
  * @route '/admin/reservations/{reservation}'
  */
         updateForm.put = (args: { reservation: number | { id: number } } | [reservation: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -379,7 +379,7 @@ update.patch = (args: { reservation: number | { id: number } } | [reservation: n
         })
             /**
 * @see \App\Http\Controllers\Admin\ReservationsController::update
- * @see app/Http/Controllers/Admin/ReservationsController.php:115
+ * @see app/Http/Controllers/Admin/ReservationsController.php:117
  * @route '/admin/reservations/{reservation}'
  */
         updateForm.patch = (args: { reservation: number | { id: number } } | [reservation: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -395,7 +395,7 @@ update.patch = (args: { reservation: number | { id: number } } | [reservation: n
     update.form = updateForm
 /**
 * @see \App\Http\Controllers\Admin\ReservationsController::print
- * @see app/Http/Controllers/Admin/ReservationsController.php:164
+ * @see app/Http/Controllers/Admin/ReservationsController.php:166
  * @route '/admin/reservations/{reservation}/print'
  */
 export const print = (args: { reservation: number | { id: number } } | [reservation: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -410,7 +410,7 @@ print.definition = {
 
 /**
 * @see \App\Http\Controllers\Admin\ReservationsController::print
- * @see app/Http/Controllers/Admin/ReservationsController.php:164
+ * @see app/Http/Controllers/Admin/ReservationsController.php:166
  * @route '/admin/reservations/{reservation}/print'
  */
 print.url = (args: { reservation: number | { id: number } } | [reservation: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
@@ -443,7 +443,7 @@ print.url = (args: { reservation: number | { id: number } } | [reservation: numb
 
 /**
 * @see \App\Http\Controllers\Admin\ReservationsController::print
- * @see app/Http/Controllers/Admin/ReservationsController.php:164
+ * @see app/Http/Controllers/Admin/ReservationsController.php:166
  * @route '/admin/reservations/{reservation}/print'
  */
 print.get = (args: { reservation: number | { id: number } } | [reservation: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -452,7 +452,7 @@ print.get = (args: { reservation: number | { id: number } } | [reservation: numb
 })
 /**
 * @see \App\Http\Controllers\Admin\ReservationsController::print
- * @see app/Http/Controllers/Admin/ReservationsController.php:164
+ * @see app/Http/Controllers/Admin/ReservationsController.php:166
  * @route '/admin/reservations/{reservation}/print'
  */
 print.head = (args: { reservation: number | { id: number } } | [reservation: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -462,7 +462,7 @@ print.head = (args: { reservation: number | { id: number } } | [reservation: num
 
     /**
 * @see \App\Http\Controllers\Admin\ReservationsController::print
- * @see app/Http/Controllers/Admin/ReservationsController.php:164
+ * @see app/Http/Controllers/Admin/ReservationsController.php:166
  * @route '/admin/reservations/{reservation}/print'
  */
     const printForm = (args: { reservation: number | { id: number } } | [reservation: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -472,7 +472,7 @@ print.head = (args: { reservation: number | { id: number } } | [reservation: num
 
             /**
 * @see \App\Http\Controllers\Admin\ReservationsController::print
- * @see app/Http/Controllers/Admin/ReservationsController.php:164
+ * @see app/Http/Controllers/Admin/ReservationsController.php:166
  * @route '/admin/reservations/{reservation}/print'
  */
         printForm.get = (args: { reservation: number | { id: number } } | [reservation: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -481,7 +481,7 @@ print.head = (args: { reservation: number | { id: number } } | [reservation: num
         })
             /**
 * @see \App\Http\Controllers\Admin\ReservationsController::print
- * @see app/Http/Controllers/Admin/ReservationsController.php:164
+ * @see app/Http/Controllers/Admin/ReservationsController.php:166
  * @route '/admin/reservations/{reservation}/print'
  */
         printForm.head = (args: { reservation: number | { id: number } } | [reservation: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({

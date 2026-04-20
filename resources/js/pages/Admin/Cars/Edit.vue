@@ -117,7 +117,7 @@ function submit() {
                 </Link>
             </div>
 
-            <form class="space-y-6 rounded-lg bg-white border border-gray-200 shadow p-6" @submit.prevent="submit">
+            <form class="space-y-6 rounded-lg bg-background border border-border shadow-sm p-6" @submit.prevent="submit">
                 <div class="space-y-6">
                     <!-- Image and Status Section -->
                     <div class="flex flex-col gap-6 md:flex-row md:gap-8">
@@ -146,7 +146,7 @@ function submit() {
                                 <select
                                     id="status"
                                     v-model="form.status"
-                                    class="mt-1 block w-full rounded-md border border-gray-300 bg-white text-gray-900 py-2 pr-10 pl-3 text-base focus:border-blue-500 focus:ring-blue-500 focus:outline-none sm:text-sm"
+                                    class="mt-1 block w-full rounded-md border border-border bg-background text-foreground py-2 pr-10 pl-3 text-base focus:border-primary focus:ring-primary focus:outline-none sm:text-sm"
                                 >
                                     <option
                                         v-for="status in statuses"
@@ -199,7 +199,7 @@ function submit() {
                                         />
                                         <label
                                             :for="'color-' + color.value"
-                                            class="flex w-full cursor-pointer items-center justify-between rounded-md border border-gray-300 p-2 text-sm font-medium text-gray-900 peer-checked:border-blue-500 peer-checked:ring-1 peer-checked:ring-blue-500 hover:bg-gray-50"
+                                            class="flex w-full cursor-pointer items-center justify-between rounded-md border border-border p-2 text-sm font-medium text-foreground peer-checked:border-primary peer-checked:ring-1 peer-checked:ring-primary hover:bg-accent"
                                             :title="color.name"
                                         >
                                             <span>{{ color.name }}</span>
@@ -304,7 +304,7 @@ function submit() {
                             <select
                                 id="transmission"
                                 v-model="form.transmission"
-                                class="w-full rounded-md border border-gray-300 bg-white text-gray-900 px-3 py-2 focus:border-blue-500 focus:ring-blue-500"
+                                class="w-full rounded-md border border-border bg-background text-foreground px-3 py-2 focus:border-primary focus:ring-primary"
                             >
                                 <option value="automatic">Automatic</option>
                                 <option value="manual">Manual</option>
@@ -338,7 +338,7 @@ function submit() {
                             <select
                                 id="fuel_type"
                                 v-model="form.fuel_type"
-                                class="w-full rounded-md border border-gray-300 bg-white text-gray-900 px-3 py-2 focus:border-blue-500 focus:ring-blue-500"
+                                class="w-full rounded-md border border-border bg-background text-foreground px-3 py-2 focus:border-primary focus:ring-primary"
                             >
                                 <option
                                     v-for="fuel in fuelTypes"
@@ -361,7 +361,7 @@ function submit() {
                                 id="description"
                                 v-model="form.description"
                                 rows="4"
-                                class="w-full rounded-md border border-gray-300 bg-white text-gray-900 px-3 py-2 focus:border-blue-500 focus:ring-blue-500"
+                                class="w-full rounded-md border border-border bg-background text-foreground px-3 py-2 focus:border-primary focus:ring-primary"
                                 placeholder="Enter a detailed description of the car including features, condition, and any special notes..."
                             ></textarea>
                             <InputError

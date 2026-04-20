@@ -6,15 +6,15 @@ import { contact } from '@/routes'
 </script>
 <template>
     <HomeLayout>
-        <div class="min-h-screen bg-zinc-950 border border-white/10/60 backdrop-blur-xl">
-            <div class="bg-black py-20 text-white">
+        <div class="min-h-screen bg-background border border-border backdrop-blur-xl">
+            <div class="bg-background py-20 text-foreground">
                 <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
                     <div class="text-center">
                         <h1 class="mb-6 text-4xl font-bold md:text-5xl">
                             {{ $t("about.title") }}
                         </h1>
                         <p
-                            class="mx-auto max-w-3xl text-xl leading-relaxed text-zinc-200"
+                            class="mx-auto max-w-3xl text-xl leading-relaxed text-muted-foreground"
                         >
                             Your trusted partner in premium car rental services,
                             providing reliable transportation solutions since
@@ -28,11 +28,11 @@ import { contact } from '@/routes'
                 <div class="mb-20">
                     <div class="grid items-center gap-12 lg:grid-cols-2">
                         <div>
-                            <h2 class="mb-6 text-3xl font-bold text-white">
+                            <h2 class="mb-6 text-3xl font-bold text-foreground">
                                 {{ $t("about.story_title") }}
                             </h2>
                             <div
-                                class="space-y-4 leading-relaxed text-zinc-200"
+                                class="space-y-4 leading-relaxed text-muted-foreground"
                             >
                                 <p>
                                     Founded in 2015, Moataz Location began with a
@@ -60,7 +60,7 @@ import { contact } from '@/routes'
                                     >
                                         200+
                                     </div>
-                                    <div class="text-zinc-200">Vehicles</div>
+                                    <div class="text-muted-foreground">Vehicles</div>
                                 </div>
                                 <div>
                                     <div
@@ -68,7 +68,7 @@ import { contact } from '@/routes'
                                     >
                                         50K+
                                     </div>
-                                    <div class="text-zinc-200">
+                                    <div class="text-muted-foreground">
                                         Happy Customers
                                     </div>
                                 </div>
@@ -78,7 +78,7 @@ import { contact } from '@/routes'
                                     >
                                         15+
                                     </div>
-                                    <div class="text-zinc-200">Locations</div>
+                                    <div class="text-muted-foreground">Locations</div>
                                 </div>
                                 <div>
                                     <div
@@ -86,7 +86,7 @@ import { contact } from '@/routes'
                                     >
                                         9
                                     </div>
-                                    <div class="text-zinc-200">
+                                    <div class="text-muted-foreground">
                                         Years Experience
                                     </div>
                                 </div>
@@ -97,10 +97,10 @@ import { contact } from '@/routes'
 
                 <div class="mb-20">
                     <div class="mb-12 text-center">
-                        <h2 class="mb-4 text-3xl font-bold text-white">
+                        <h2 class="mb-4 text-3xl font-bold text-foreground">
                             {{ $t("about.mission_title") }}
                         </h2>
-                        <p class="mx-auto max-w-2xl text-zinc-200">
+                        <p class="mx-auto max-w-2xl text-muted-foreground">
                             We're committed to providing exceptional car rental
                             experiences while maintaining the highest standards
                             of service and integrity.
@@ -123,11 +123,11 @@ import { contact } from '@/routes'
                                 </svg>
                             </div>
                             <h3
-                                class="mb-3 text-xl font-semibold text-white"
+                                class="mb-3 text-xl font-semibold text-foreground"
                             >
                                 Reliability
                             </h3>
-                            <p class="text-zinc-200">
+                            <p class="text-muted-foreground">
                                 Every vehicle in our fleet is regularly
                                 maintained and inspected to ensure your safety
                                 and peace of mind on every journey.
@@ -149,11 +149,11 @@ import { contact } from '@/routes'
                                 </svg>
                             </div>
                             <h3
-                                class="mb-3 text-xl font-semibold text-white"
+                                class="mb-3 text-xl font-semibold text-foreground"
                             >
                                 Transparency
                             </h3>
-                            <p class="text-zinc-200">
+                            <p class="text-muted-foreground">
                                 No hidden fees, no surprises. We believe in
                                 clear, upfront pricing and honest communication
                                 with all our customers.
@@ -175,11 +175,11 @@ import { contact } from '@/routes'
                                 </svg>
                             </div>
                             <h3
-                                class="mb-3 text-xl font-semibold text-white"
+                                class="mb-3 text-xl font-semibold text-foreground"
                             >
                                 Excellence
                             </h3>
-                            <p class="text-zinc-200">
+                            <p class="text-muted-foreground">
                                 We continuously strive to exceed expectations
                                 through superior service, quality vehicles, and
                                 innovative solutions.
@@ -189,9 +189,9 @@ import { contact } from '@/routes'
                 </div>
 
                 <div class="mb-20">
-                    <div class="rounded-lg bg-black p-8 md:p-12">
+                    <div class="rounded-lg bg-background border border-border p-8 md:p-12">
                         <h2
-                            class="mb-8 text-center text-3xl font-bold text-white"
+                            class="mb-8 text-center text-3xl font-bold text-foreground"
                         >
                             {{ $t("about.choose_title") }}
                         </h2>
@@ -210,11 +210,11 @@ import { contact } from '@/routes'
                                     </svg>
                                     <div>
                                         <h4
-                                            class="mb-1 font-semibold text-white"
+                                            class="mb-1 font-semibold text-foreground"
                                         >
                                             Premium Fleet
                                         </h4>
-                                        <p class="text-zinc-200">
+                                        <p class="text-muted-foreground">
                                             Modern, well-maintained vehicles
                                             from top manufacturers
                                         </p>
@@ -233,11 +233,11 @@ import { contact } from '@/routes'
                                     </svg>
                                     <div>
                                         <h4
-                                            class="mb-1 font-semibold text-white"
+                                            class="mb-1 font-semibold text-foreground"
                                         >
                                             24/7 Support
                                         </h4>
-                                        <p class="text-zinc-200">
+                                        <p class="text-muted-foreground">
                                             Round-the-clock customer service and
                                             roadside assistance
                                         </p>
@@ -256,11 +256,11 @@ import { contact } from '@/routes'
                                     </svg>
                                     <div>
                                         <h4
-                                            class="mb-1 font-semibold text-white"
+                                            class="mb-1 font-semibold text-foreground"
                                         >
                                             Flexible Booking
                                         </h4>
-                                        <p class="text-zinc-200">
+                                        <p class="text-muted-foreground">
                                             Easy online booking with flexible
                                             pickup and return options
                                         </p>
@@ -281,11 +281,11 @@ import { contact } from '@/routes'
                                     </svg>
                                     <div>
                                         <h4
-                                            class="mb-1 font-semibold text-white"
+                                            class="mb-1 font-semibold text-foreground"
                                         >
                                             Competitive Pricing
                                         </h4>
-                                        <p class="text-zinc-200">
+                                        <p class="text-muted-foreground">
                                             Best rates in the market with no
                                             hidden fees
                                         </p>
@@ -304,11 +304,11 @@ import { contact } from '@/routes'
                                     </svg>
                                     <div>
                                         <h4
-                                            class="mb-1 font-semibold text-white"
+                                            class="mb-1 font-semibold text-foreground"
                                         >
                                             Multiple Locations
                                         </h4>
-                                        <p class="text-zinc-200">
+                                        <p class="text-muted-foreground">
                                             Convenient pickup points across the
                                             city
                                         </p>
@@ -327,11 +327,11 @@ import { contact } from '@/routes'
                                     </svg>
                                     <div>
                                         <h4
-                                            class="mb-1 font-semibold text-white"
+                                            class="mb-1 font-semibold text-foreground"
                                         >
                                             Safety First
                                         </h4>
-                                        <p class="text-zinc-200">
+                                        <p class="text-muted-foreground">
                                             All vehicles undergo rigorous safety
                                             inspections
                                         </p>
@@ -344,10 +344,10 @@ import { contact } from '@/routes'
 
                 <div class="mb-20">
                     <div class="mb-12 text-center">
-                        <h2 class="mb-4 text-3xl font-bold text-white">
+                        <h2 class="mb-4 text-3xl font-bold text-foreground">
                             {{ $t("about.team_title") }}
                         </h2>
-                        <p class="mx-auto max-w-2xl text-zinc-200">
+                        <p class="mx-auto max-w-2xl text-muted-foreground">
                             Meet the experienced professionals who drive our
                             company forward and ensure exceptional service for
                             every customer.
@@ -362,14 +362,14 @@ import { contact } from '@/routes'
                                 alt=""
                             />
                             <h4
-                                class="mb-1 text-xl font-semibold text-white"
+                                class="mb-1 text-xl font-semibold text-foreground"
                             >
                                 Sarah Johnson
                             </h4>
                             <p class="mb-2 font-medium text-red-500">
                                 CEO & Founder
                             </p>
-                            <p class="text-sm text-zinc-200">
+                            <p class="text-sm text-muted-foreground">
                                 15+ years in automotive industry with a passion
                                 for customer service excellence.
                             </p>
@@ -389,7 +389,7 @@ import { contact } from '@/routes'
                             <p class="mb-2 font-medium text-red-500">
                                 Operations Director
                             </p>
-                            <p class="text-sm text-zinc-200">
+                            <p class="text-sm text-muted-foreground">
                                 Expert in fleet management and logistics with 12
                                 years of industry experience.
                             </p>
@@ -409,7 +409,7 @@ import { contact } from '@/routes'
                             <p class="mb-2 font-medium text-red-500">
                                 Customer Success Manager
                             </p>
-                            <p class="text-sm text-zinc-200">
+                            <p class="text-sm text-muted-foreground">
                                 Dedicated to ensuring every customer has an
                                 exceptional rental experience.
                             </p>
@@ -423,7 +423,7 @@ import { contact } from '@/routes'
                     <h2 class="mb-4 text-3xl font-bold">
                         {{ $t("about.ready_title") }}
                     </h2>
-                    <p class="mx-auto mb-8 max-w-2xl text-zinc-200">
+                    <p class="mx-auto mb-8 max-w-2xl text-muted-foreground">
                         Experience the Moataz Location difference today. Browse
                         our fleet and book your perfect vehicle in just a few
                         clicks.
@@ -437,7 +437,7 @@ import { contact } from '@/routes'
                         </a>
                         <a
                             :href="contact.url()"
-                            class="rounded-lg border-2 border-white bg-transparent px-8 py-3 font-semibold text-white transition-colors duration-200 hover:bg-zinc-950 border border-white/10/60 backdrop-blur-xl hover:text-white"
+                            class="rounded-lg border-2 border-border bg-transparent px-8 py-3 font-semibold text-foreground transition-all duration-200 hover:bg-accent"
                         >
                             Contact Us
                         </a>

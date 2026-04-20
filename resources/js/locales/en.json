@@ -160,7 +160,11 @@
     "processing": "Processing...",
     "login_to_book": "Login to Book",
     "day": "day",
-    "days": "days"
+    "days": "days",
+    "customer_info": "Customer Information",
+    "full_name": "Full Name",
+    "email_address": "Email Address (Optional)",
+    "phone_number": "Phone Number"
   },
   "auth": {
     "login_title": "Sign in to your account",
@@ -177,5 +181,20 @@
     "name": "Full Name",
     "confirm": "Confirm Password",
     "have_account": "Already have an account?"
+  },
+  "footer": {
+    "desc": "Premium car rental service providing luxury and reliable vehicles for all your transportation needs with exceptional customer service.",
+    "services": "Services",
+    "luxury_rental": "Luxury Car Rental",
+    "long_term_rental": "Long Term Rental",
+    "corporate_solutions": "Corporate Solutions",
+    "airport_transfers": "Airport Transfers",
+    "support": "Support",
+    "help_center": "Help Center",
+    "terms": "Terms & Conditions",
+    "privacy": "Privacy Policy",
+    "contact_info": "Contact Info",
+    "location": "Casablanca, Morocco",
+    "rights": "All rights reserved."
   }
 }

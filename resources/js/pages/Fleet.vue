@@ -108,21 +108,21 @@ const hasActiveFilters = computed(() => {
 
 <template>
     <HomeLayout>
-        <div class="min-h-screen bg-black">
+        <div class="min-h-screen bg-background">
             <!-- Loading Overlay -->
             <div
                 v-if="isLoading"
                 class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-md"
             >
                 <div
-                    class="flex items-center space-x-4 rounded-2xl bg-zinc-950 border border-white/10/90 border border-white/10 p-8 shadow-[0_0_40px_rgba(220,38,38,0.2)]"
+                    class="flex items-center space-x-4 rounded-2xl bg-background border border-border p-8 shadow-[0_0_40px_rgba(220,38,38,0.2)]"
                 >
                     <div class="relative">
                         <div
                             class="h-8 w-8 animate-spin rounded-full border-4 border-red-500/20 border-t-red-600"
                         ></div>
                     </div>
-                    <span class="text-lg font-medium text-white"
+                    <span class="text-lg font-medium text-foreground"
                         >{{ $t("fleet.loading") }}</span
                     >
                 </div>
@@ -138,7 +138,7 @@ const hasActiveFilters = computed(() => {
                         <div class="mb-6 lg:hidden">
                             <button
                                 @click="showFilters = !showFilters"
-                                class="group flex w-full items-center justify-between rounded-2xl border border-white/10 bg-zinc-950 border border-white/10/50 backdrop-blur-md px-6 py-4 text-left font-semibold text-zinc-200 shadow-sm transition-all duration-200 hover:border-red-500/30 hover:shadow-[0_0_20px_rgba(220,38,38,0.1)]"
+                                class="group flex w-full items-center justify-between rounded-2xl border border-border bg-background backdrop-blur-md px-6 py-4 text-left font-semibold text-muted-foreground shadow-sm transition-all duration-200 hover:border-red-500/30 hover:shadow-[0_0_20px_rgba(220,38,38,0.1)]"
                             >
                                 <span class="flex items-center">
                                     <div
@@ -194,7 +194,7 @@ const hasActiveFilters = computed(() => {
                         <!--  Filters Panel -->
                         <div
                             :class="{ hidden: !showFilters }"
-                            class="sticky top-20 space-y-6 rounded-2xl border border-white/10 bg-zinc-950 border border-white/10/60 backdrop-blur-xl p-6 shadow-2xl lg:block"
+                            class="sticky top-20 space-y-6 rounded-2xl border border-border bg-background backdrop-blur-xl p-6 shadow-2xl lg:block"
                         >
                             <!-- Search Form -->
                             <div>
@@ -205,11 +205,11 @@ const hasActiveFilters = computed(() => {
                                             v-model="searchQuery"
                                             type="text"
                                             :placeholder="$t('fleet.search_placeholder')"
-                                            class="w-full rounded-xl border border-zinc-700 bg-zinc-950 border border-white/5/50 py-3 pr-4 pl-12 text-white placeholder-zinc-500 transition-all duration-200 focus:border-red-500 focus:bg-zinc-950 border border-white/5 focus:ring-4 focus:ring-red-500/20"
+                                            class="w-full rounded-xl border border-border bg-background py-3 pr-4 pl-12 text-foreground placeholder-muted-foreground transition-all duration-200 focus:border-red-500 focus:bg-background focus:ring-4 focus:ring-red-500/20"
                                             @keydown.enter="handleSearch"
                                         />
                                         <svg
-                                            class="absolute top-1/2 left-4 h-5 w-5 -translate-y-1/2 transform text-zinc-200"
+                                            class="absolute top-1/2 left-4 h-5 w-5 -translate-y-1/2 transform text-muted-foreground"
                                             fill="none"
                                             stroke="currentColor"
                                             viewBox="0 0 24 24"
@@ -236,14 +236,14 @@ const hasActiveFilters = computed(() => {
                                     <!-- Make Filter -->
                                     <div>
                                         <label
-                                            class="mb-2 block text-sm font-semibold text-zinc-200"
+                                            class="mb-2 block text-sm font-semibold text-foreground"
                                             >{{ $t("fleet.vehicle_make") }}</label
                                         >
                                         <select
                                             v-model="selectedMake"
-                                            class="w-full rounded-xl border border-zinc-700 bg-zinc-950 border border-white/5/50 px-4 py-3 text-white transition-all duration-200 focus:border-red-500 focus:bg-zinc-950 border border-white/5 focus:ring-4 focus:ring-red-500/20"
+                                            class="w-full rounded-xl border border-border bg-background px-4 py-3 text-foreground transition-all duration-200 focus:border-red-500 focus:bg-background focus:ring-4 focus:ring-red-500/20"
                                         >
-                                            <option value="" class="bg-zinc-950 border border-white/5 text-white">{{ $t("fleet.all_makes") }}</option>
+                                            <option value="" class="bg-background text-foreground">{{ $t("fleet.all_makes") }}</option>
                                             <option
                                                 v-for="make in makes"
                                                 :key="make"
@@ -258,12 +258,12 @@ const hasActiveFilters = computed(() => {
                                     <!-- Fuel Type Filter -->
                                     <div>
                                         <label
-                                            class="mb-2 block text-sm font-semibold text-zinc-200"
+                                            class="mb-2 block text-sm font-semibold text-foreground"
                                             >{{ $t("fleet.fuel_type_filter") }}</label
                                         >
                                         <select
                                             v-model="selectedFuelType"
-                                            class="w-full rounded-xl border border-zinc-700 bg-zinc-950 border border-white/5/50 px-4 py-3 text-white transition-all duration-200 focus:border-red-500 focus:bg-zinc-950 border border-white/5 focus:ring-4 focus:ring-red-500/20"
+                                            class="w-full rounded-xl border border-border bg-background px-4 py-3 text-foreground transition-all duration-200 focus:border-red-500 focus:bg-background focus:ring-4 focus:ring-red-500/20"
                                         >
                                             <option value="" class="bg-zinc-950 border border-white/5 text-white">
                                                 All Fuel Types
@@ -287,12 +287,12 @@ const hasActiveFilters = computed(() => {
                                     <!-- Year Filter -->
                                     <div>
                                         <label
-                                            class="mb-2 block text-sm font-semibold text-zinc-200"
+                                            class="mb-2 block text-sm font-semibold text-foreground"
                                             >{{ $t("fleet.model_year") }}</label
                                         >
                                         <select
                                             v-model="selectedYear"
-                                            class="w-full rounded-xl border border-zinc-700 bg-zinc-950 border border-white/5/50 px-4 py-3 text-white transition-all duration-200 focus:border-red-500 focus:bg-zinc-950 border border-white/5 focus:ring-4 focus:ring-red-500/20"
+                                            class="w-full rounded-xl border border-border bg-background px-4 py-3 text-foreground transition-all duration-200 focus:border-red-500 focus:bg-background focus:ring-4 focus:ring-red-500/20"
                                         >
                                             <option value="" class="bg-zinc-950 border border-white/5 text-white">{{ $t("fleet.all_years") }}</option>
                                             <option
@@ -309,7 +309,7 @@ const hasActiveFilters = computed(() => {
                                     <!-- Price Range -->
                                     <div>
                                         <label
-                                            class="mb-2 block text-sm font-semibold text-zinc-200"
+                                            class="mb-2 block text-sm font-semibold text-foreground"
                                             >{{ $t("fleet.daily_rate_range") }}</label
                                         >
                                         <div class="grid grid-cols-2 gap-3">
@@ -322,19 +322,19 @@ const hasActiveFilters = computed(() => {
                                                     v-model="minPrice"
                                                     type="number"
                                                     :placeholder="$t('fleet.min')"
-                                                    class="w-full rounded-xl border border-zinc-700 bg-zinc-950 border border-white/5/50 py-3 pr-4 pl-8 text-white transition-all duration-200 focus:border-red-500 focus:bg-zinc-950 border border-white/5 focus:ring-4 focus:ring-red-500/20"
+                                                    class="w-full rounded-xl border border-border bg-background py-3 pr-4 pl-8 text-foreground transition-all duration-200 focus:border-red-500 focus:bg-background focus:ring-4 focus:ring-red-500/20"
                                                 />
                                             </div>
                                             <div class="relative">
                                                 <span
-                                                    class="absolute top-1/2 left-3 -translate-y-1/2 text-zinc-200"
+                                                    class="absolute top-1/2 left-3 -translate-y-1/2 text-muted-foreground"
                                                     >$</span
                                                 >
                                                 <input
                                                     v-model="maxPrice"
                                                     type="number"
                                                     :placeholder="$t('fleet.max')"
-                                                    class="w-full rounded-xl border border-zinc-700 bg-zinc-950 border border-white/5/50 py-3 pr-4 pl-8 text-white transition-all duration-200 focus:border-red-500 focus:bg-zinc-950 border border-white/5 focus:ring-4 focus:ring-red-500/20"
+                                                    class="w-full rounded-xl border border-border bg-background py-3 pr-4 pl-8 text-foreground transition-all duration-200 focus:border-red-500 focus:bg-background focus:ring-4 focus:ring-red-500/20"
                                                 />
                                             </div>
                                         </div>
@@ -355,7 +355,7 @@ const hasActiveFilters = computed(() => {
 
                                 <button
                                     @click="clearFilters"
-                                    class="w-full rounded-xl border border-white/10 bg-zinc-950 border border-white/5 px-4 py-3 font-medium text-zinc-200 transition-all duration-200 hover:border-white/20 hover:bg-zinc-700 hover:text-white"
+                                    class="w-full rounded-xl border border-border bg-background px-4 py-3 font-medium text-muted-foreground transition-all duration-200 hover:border-foreground hover:bg-accent hover:text-foreground"
                                 >
                                     {{ $t("fleet.clear_filters") }}
                                 </button>
@@ -368,30 +368,30 @@ const hasActiveFilters = computed(() => {
                     <div class="lg:w-3/4">
                         <!--  Results Summary -->
                         <div
-                            class="mb-8 rounded-2xl border border-white/10 bg-zinc-950 border border-white/10/60 backdrop-blur-xl p-6 shadow-[0_8px_30px_rgba(0,0,0,0.5)]"
+                            class="mb-8 rounded-2xl border border-border bg-background backdrop-blur-xl p-6 shadow-sm"
                         >
                             <div
                                 class="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center"
                             >
                                 <div>
                                     <h2
-                                        class="text-xl font-semibold text-white"
+                                        class="text-xl font-semibold text-foreground"
                                     >
                                         {{ cars.total }} {{ $t("fleet.premium_available") }}
                                     </h2>
-                                    <p class="text-sm text-zinc-200 mt-1">
+                                    <p class="text-sm text-muted-foreground mt-1">
                                         {{ $t("fleet.showing") }} {{ cars.from }} -
                                         {{ cars.to }} {{ $t("fleet.results") }}
                                     </p>
                                 </div>
                                 <div
-                                    class="flex items-center space-x-3 text-sm text-zinc-200"
+                                    class="flex items-center space-x-3 text-sm text-muted-foreground"
                                 >
                                     <span
                                         >{{ $t("fleet.page") }} {{ cars.current_page }} {{ $t("fleet.of") }}
                                         {{ cars.last_page }}</span
                                     >
-                                    <div class="h-4 w-px bg-zinc-700"></div>
+                                    <div class="h-4 w-px bg-border"></div>
                                     <span
                                         class="rounded-full bg-red-600/20 border border-red-500/30 px-3 py-1 font-medium text-red-400"
                                     >
@@ -416,7 +416,7 @@ const hasActiveFilters = computed(() => {
                         <!--  No Results -->
                         <div
                             v-else
-                            class="rounded-2xl border border-white/10 bg-zinc-950 border border-white/10/60 backdrop-blur-xl p-16 text-center shadow-[0_8px_30px_rgba(0,0,0,0.5)]"
+                            class="rounded-2xl border border-border bg-background backdrop-blur-xl p-16 text-center shadow-sm"
                         >
                             <div
                                 class="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-red-600/10 border border-red-500/30"
@@ -436,12 +436,12 @@ const hasActiveFilters = computed(() => {
                                 </svg>
                             </div>
                             <h3
-                                class="mb-3 text-2xl font-semibold text-white"
+                                class="mb-3 text-2xl font-semibold text-foreground"
                             >
                                 {{ $t("fleet.no_found") }}
                             </h3>
                             <p
-                                class="mx-auto mb-8 max-w-md leading-relaxed text-zinc-200"
+                                class="mx-auto mb-8 max-w-md leading-relaxed text-muted-foreground"
                             >
                                 {{ $t("fleet.no_match") }}
                             </p>
@@ -456,7 +456,7 @@ const hasActiveFilters = computed(() => {
                         <!--  Pagination -->
                         <div
                             v-if="cars.data.length > 0 && cars.last_page > 1"
-                            class="mt-12 rounded-2xl border border-white/10 bg-zinc-950 border border-white/10/60 backdrop-blur-xl p-6 shadow-[0_8px_30px_rgba(0,0,0,0.5)]"
+                            class="mt-12 rounded-2xl border border-border bg-background backdrop-blur-xl p-6 shadow-sm"
                         >
                             <div
                                 class="flex flex-col items-center justify-between gap-6 sm:flex-row"
@@ -473,7 +473,7 @@ const hasActiveFilters = computed(() => {
                                         {{ $t("fleet.previous") }}
                                     </button>
                                     <span
-                                        class="flex items-center rounded-xl bg-zinc-950 border border-white/5 border border-white/10 px-4 py-3 text-sm font-medium text-white"
+                                        class="flex items-center rounded-xl bg-background border border-border px-4 py-3 text-sm font-medium text-foreground"
                                     >
                                         Page {{ cars.current_page }} of
                                         {{ cars.last_page }}
@@ -507,9 +507,9 @@ const hasActiveFilters = computed(() => {
                                         :class="{
                                             'bg-red-600 text-white border-red-500 shadow-[0_0_15px_rgba(220,38,38,0.3)]':
                                                 link.active,
-                                            'border-white/10 bg-zinc-950 border border-white/5 text-zinc-200 hover:bg-zinc-700 hover:text-white':
+                                            'border-border bg-background text-muted-foreground hover:bg-accent hover:text-foreground':
                                                 !link.active && link.url,
-                                            'cursor-not-allowed border-white/5 bg-zinc-950 border border-white/10 text-zinc-600':
+                                            'cursor-not-allowed border-border bg-background text-muted-foreground/50':
                                                 !link.url,
                                         }"
                                         class="rounded-xl border px-4 py-2 text-sm font-medium transition-all duration-200"
@@ -518,17 +518,17 @@ const hasActiveFilters = computed(() => {
                                 </div>
 
                                 <!-- Results info -->
-                                <div class="text-sm text-zinc-200">
+                                <div class="text-sm text-muted-foreground">
                                     {{ $t("fleet.showing") }}
-                                    <span class="font-semibold text-white">{{
+                                    <span class="font-semibold text-foreground">{{
                                         cars.from
                                     }}</span>
                                     {{ $t("fleet.to") }}
-                                    <span class="font-semibold text-white">{{
+                                    <span class="font-semibold text-foreground">{{
                                         cars.to
                                     }}</span>
                                     {{ $t("fleet.of") }}
-                                    <span class="font-semibold text-white">{{
+                                    <span class="font-semibold text-foreground">{{
                                         cars.total
                                     }}</span>
                                     {{ $t("fleet.results") }}

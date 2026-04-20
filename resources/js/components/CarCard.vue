@@ -26,11 +26,11 @@ defineProps<Props>();
 
 <template>
     <div
-        class="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-white/10 bg-zinc-900/80 backdrop-blur-md shadow-[0_8px_30px_rgba(0,0,0,0.5)] transition-all duration-300 hover:shadow-[0_8px_40px_rgba(220,38,38,0.2)] hover:border-red-500/30"
+        class="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-border bg-background backdrop-blur-md shadow-sm transition-all duration-300 hover:shadow-lg hover:border-red-500/30"
     >
         <!-- Car Image -->
         <div
-            class="relative h-56 overflow-hidden bg-gradient-to-br from-zinc-800 to-zinc-900"
+            class="relative h-56 overflow-hidden bg-accent"
         >
             <img
                 :src="car.image_url"
@@ -59,13 +59,13 @@ defineProps<Props>();
             <!-- Header -->
             <div class="space-y-2">
                 <h3
-                    class="text-xl font-bold text-white transition-colors group-hover:text-red-500"
+                    class="text-xl font-bold text-foreground transition-colors group-hover:text-red-500"
                 >
                     {{ car.make }} {{ car.model }} - {{ car.year }} - {{ car.id }}
                 </h3>
 
                 <div class="flex items-center gap-2">
-                    <div class="flex items-center gap-1 capitalize text-zinc-300">
+                    <div class="flex items-center gap-1 capitalize text-muted-foreground">
                         <svg
                             class="h-4 w-4 text-red-500"
                             fill="none"
@@ -81,17 +81,17 @@ defineProps<Props>();
                         </svg>
                         <span class="font-medium">{{ car.fuel_type }}</span>
                     </div>
-                    <div class="text-xs bg-zinc-800 px-2 py-1 rounded-md text-zinc-300 border border-white/5">
+                    <div class="text-xs bg-accent px-2 py-1 rounded-md text-muted-foreground border border-border">
                         <p>{{ $t("fleet.gps") }}</p>
                     </div>
-                    <div class="text-xs bg-zinc-800 px-2 py-1 rounded-md text-zinc-300 border border-white/5">
+                    <div class="text-xs bg-accent px-2 py-1 rounded-md text-muted-foreground border border-border">
                         <p>{{ $t("fleet.insurance") }}</p>
                     </div>
                 </div>
             </div>
 
             <!-- Description -->
-            <p class="line-clamp-2 text-sm leading-relaxed text-zinc-400">
+            <p class="line-clamp-2 text-sm leading-relaxed text-muted-foreground">
                 {{ car.description }}
             </p>
         </div>
@@ -99,7 +99,7 @@ defineProps<Props>();
         <div class=" p-4">
             <button
                 @click="bookCar(car.id)"
-                class="group/btn w-full cursor-pointer rounded-xl bg-red-600/10 border border-red-500/30 px-6 py-3.5 font-semibold text-white shadow-[0_0_15px_rgba(220,38,38,0.2)] transition-all duration-300 hover:bg-red-600 hover:border-red-400 hover:shadow-[0_0_25px_rgba(220,38,38,0.5)] focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-zinc-900 focus:outline-none"
+                class="group/btn w-full cursor-pointer rounded-xl bg-red-600/10 border border-red-500/30 px-6 py-3.5 font-semibold text-foreground shadow-sm transition-all duration-300 hover:bg-red-600 hover:border-red-400 hover:shadow-md focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-background focus:outline-none"
             >
                 <span
                     class="flex items-center justify-center gap-2 text-red-500 group-hover:text-white"
